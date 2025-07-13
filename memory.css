@@ -80,6 +80,10 @@
       margin-right: 10px;
     }
 
+    .folder-item:hover {
+      text-decoration: underline;
+    }
+    
     .user-text {
       display: flex;
       flex-direction: column;
