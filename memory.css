@@ -1,0 +1,232 @@
+    @font-face {
+      font-family: 'press2p';
+      font-style: normal;
+      font-weight: 400;
+      src: url('./f8c7d4a04eee4eea-s.p.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'dmo';
+      font-style: normal;
+      font-weight: 400;
+      src: url('./DungGeunMo.ttf') format('truetype');
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+      color: white;
+    }
+
+    div {
+      font-family: 'press2p';
+    }
+
+    .section {
+      font-family: 'dmo';
+    }
+
+    .box {
+      width: 1200px;
+      height: 900px;
+      padding: 20px;
+      border: 2px solid white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://l3u8e64e5j.ufs.sh/f/screenw.webp') center/cover no-repeat;
+      filter: brightness(40%);
+      z-index: 0;
+    }
+
+    .box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-info {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      border-bottom: 2px solid white;
+      height: 87px;
+      box-sizing: border-box;
+    }
+
+    .user-photo {
+      width: 50px;
+      height: 50px;
+      background: url('./media/login/login_door.png') center/cover no-repeat;
+      border: 2px solid white;
+      margin-right: 10px;
+    }
+    .user-photo2 {
+      width: 100px;
+      height: 100px;
+      background: url('') center/cover no-repeat;
+      border: 2px solid white;
+      margin-right: 10px;
+    }
+
+    .user-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .user-text div {
+      line-height: 1.8;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+    }
+
+    .inner-box {
+      flex-grow: 1;
+      border: 1px solid white;
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .title-bar {
+      height: 30px;
+      border-bottom: 1px solid white;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      user-select: none;
+      background-color: white;
+      color: black;
+    }
+
+    .title-buttons {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .title-button {
+      width: 14px;
+      height: 14px;
+      border: 1px solid white;
+      background-color: #222;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .title-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .content-box {
+      flex-grow: 1;
+      display: flex;
+    }
+
+    .left-panel {
+      width: 35%;
+      border-right: 1px solid white;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .user-search {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .user-search label {
+      margin-right: 10px;
+    }
+
+    .user-search input {
+      padding: 5px;
+      border: 1px solid white;
+      background: white;
+      color: black;
+      font-family: 'press2p';
+      margin-right: -1px;
+    }
+
+    .user-search button {
+      padding: 5px 10px;
+      border: 1px solid white;
+      background: white;
+      color: black;
+      font-family: 'press2p';
+      cursor: pointer;
+    }
+
+    .user-list {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .folder-item {
+      margin: 10px 0;
+      cursor: pointer;
+    }
+
+    .user-detail {
+      border-top: 1px solid white;
+      padding: 10px;
+      height: 40%;
+    }
+
+    .center-panel {
+      width: 65%;
+      padding: 10px;
+      white-space: pre-wrap;
+    }
+
+    .footer {
+      height: 40px;
+      border-top: 2px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 15px;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      color: black;
+      text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
+    }

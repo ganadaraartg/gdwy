@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memory Monitor</title>
+  <link rel="stylesheet" href="memory.css" />
+  <style>
+    .search-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 6px;
+    }
+
+    .search-label {
+      font-size: 14px;
+    }
+
+    .search-input {
+      width: 100px;
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
+      padding: 4px 6px;
+      font-family: 'press2p';
+      outline: none;
+    }
+
+    .search-input:focus {
+      outline: none;
+      box-shadow: none;
+      border-color: white;
+    }
+
+    .search-button {
+      background-color: white;
+      border: none;
+      color: black;
+      padding: 4px 10px;
+      font-family: 'press2p';
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="header-info">
+      <div class="user-photo"></div>
+      <div class="user-text">
+        <div>Adrift02</div>
+        <div>root: - access</div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="inner-box">
+        <div class="title-bar">
+          Memory Monitor
+          <div class="title-buttons">
+            <a href="menu.html" class="title-button exit">X</a>
+          </div>
+        </div>
+
+        <div class="content-box">
+          <div class="left-panel">
+            <h3>Users</h3>
+            <div class="search-container">
+              <span class="search-label">search</span>
+              <input id="searchInput" style="width: 180px;" class="search-input" type="text" placeholder="" />
+              <button class="search-button" onclick="searchUser()">Enter</button>
+            </div>
+
+            <div id="userList">
+              <div class="folder-item" onclick="showUserInfo('MANE_WAKARU', 'Role : SA', '192.168.150.132','PER : rwxrwxrwx, 777','Last Login : 189 years ago', '...','./media/login/MANE_WAKARU.png')">
+                <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 0H8V1H9V2H19V3H20V15H19V16H1V15H0V1H1V0ZM2 4V14H18V4H2Z" fill="white"></path></svg>
+                MANE_WAKARU
+              </div>
+              <div class="folder-item" onclick="showUserInfo('Alvin Cream', 'Role : UXR', '22.35.155.180','PER : rw-rw-r--, 664','Last Login : 188 years ago', '...','./media/login/ALVIN.png')">
+                <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 0H8V1H9V2H19V3H20V15H19V16H1V15H0V1H1V0ZM2 4V14H18V4H2Z" fill="white"></path></svg>
+                ALVIN7680
+              </div>
+              <div class="folder-item" onclick="showUserInfo('Adrift01', 'Role : SO', '224.212.1.223','PER : rw-rw-rw-, 666','Last Login : 12 years ago', '...','./media/login/Adrift01.png')">
+                <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 0H8V1H9V2H19V3H20V15H19V16H1V15H0V1H1V0ZM2 4V14H18V4H2Z" fill="white"></path></svg>
+                Adrift01
+              </div>
+              <div class="folder-item" onclick="showUserInfo('â€“â€”â€˜â€™Â©Â®Â±Â¼Â½Â¾', 'Role : SO', '999.999.999.999','PER : rwxrwxrwx, 777','Last Login : 1 hours ago', 'ḯ̵̢̧̛̭̫͍̥̖͔̺̗̫̳̭̣͍̰̓̌͊̑͆̀͛͗́̈́̈̌̂͆̾̒̀̎̇̃̊̀̆̽̋͋̔̀̿̈́͗̔̅̽͆͂̉͌̈͑̽͑̐͗̈́̅̋̂̉̓̒̄̀͌̓̆̊̂͆̋̓̋͐͗̃̓̓̋͋̋͆̽͋̍̓͆͛͛̉̆̚̕̚̕̚̕͜͝͝͝͝͝͝͝͝͝ͅ ̶̢̢̡̡̧̢̧̨̨̡̨̨̡̧̧̧̧̡̡̧̛̛̛̹̝͕͉͎̹̠̘͍̭̥͓̯̤̝̥̙̬͕̞͓͓͓͉̯̣͎͕̤̘̭̣̼̲̝̤̭̲̣̟̗̙̯̖̠̳̳̣̦͓̞̪̼̻̖̰̯͍̯̭̙̪̭̜̭̰͚̯̼̪̤̗͓̖̻͎̪̫̘̖̝͚̹̼͚̠͕̞̰͓̬̗̘̬̮̺͖̯̤͎̼̻̭̩̬̯̹̰͇̣̠̗̻͓̰̮̝̮͍̪̜̮̥͔̜̬̺̟̦̖̳̲̦̲̦̤̱̳̳̤̖̝̥̩̝̙̥͕̪͈̺͉̬̠̙̰̗̻̮̮̗̘̳̹͇̋͂̒̆̌͗̀́͗́̎͛̏̑͋̾͋̏̆̿̄̽̅̈́͛̏̍̎̊͂͛͛̋͂̂̽̒͋̍̈̇̈́̍͊̀̅͂̾̽̆̓̐̌̅̓̀̈́̅̿̇̈̇͐͌̄͐̍̑̇͗͒̈͐́̍̋́̔̀̀̎̈̀̓̀̓̐͗̑͗̎̽̓͒͆̒̋̄͑͆̈͒͛́̽͒̓̿͒͌̎̾̾͌̓̀̾̔̇̔̽͋͆͘̕̚̕̕̚̚̕͘̕͜͜͝͠͝͝͝͝͠͝͠͝ͅͅͅͅͅͅͅh̴̢̡̧̧̨̧̡̧̡̧̧̨̡̛̛̛̛̞̩̼̻͉̼͕͍̥̫̩̯̳͙̰͓̤̪͚̬̙̩͉͉͇̥̪̬̻̳̩̪̞̮̞̱̺̱̰͙̙̩̫̳̬̝͇͉͔̝͙̖̪̪̫͍̟̳̤͔̣̙͚̜͙̻͎͙̮̬͙͇̙̮͇̺͕̝͉̹̘̰̞̖̖̦̥͔̝̣͎͖̪̻̥̣̤͎̅́̓̀͑̃͐̈́̀̉̒̀̾̍͋̔͐́͌̊̔̈́̈̽͆̇͊͐̍̈́̆͐̐̀̎̆͌͒̐́̊̎̒͌̉͌̽͊́́̅̇͛̉̊̅̀̋̊̐̀̽̐͗̋̄̒́̎̎̒͒̊̎̌̅̒͐͆͆̈́̃́̿̃̀͂̒̐́̂̅͌̓̍́̃́̀̊͊̀͂̄͛̾́͗̈͋̒̋̎̐̇̋̿͆́͗̐͋̈͑̅̒̏̍̊̄̏͑͐͋̌̉̿́͆̒̔̔͒͐̀̇͛̆͌̿̉̓͆́̑̎͗̏̀̃́̽̈́͂̉͂̈́̓͒̌͌̆̅́͆̀͐͊̅̏̀̔̐̍̃̇̉̈́͛̀͗̈́̀͆̒̆̾̓̓̊̽̑̅̒̀̆̀̂̓͐͑͐̈͊̓͆͗̚̚͘͘̕̕̚̚̚̚͘̕͘͘̚̚̚̕͘͘͘̚͜͜͜͠͝͠͝͝͝͝͝͠͝͠͝͝͠͝ͅͅͅȩ̸̧̡̧̧̢̧̧̨̡̡̡̡̡̨̧̧̛̛̛̛͔̟͈̩͔̱̝̣͉͖͇̠͙͈̙̻͕̫̬̗̻̝̠̼͉̫͉̯͉̯̱̬̭̺͈̱̗̣̝̬̞͈̞̲̻̻̻̝̱̖̗͉̟̥͚̬͙̣̼̘̙̗̼̭̺̯̥̤͇͖̳͚͇̫̮̳͎͔̘͙͍͈̦͖͎̮̲̼͚̼̳̗̞͍̼̠̘͕̟̜̳̬͚̬̻̺͖̲̥̯͚̼̭͇̺̯̻̜̹͕̪͈̟̱͓̺̙̹̘͎̯̳̙̭̯̖̘̠̟̠̦̬̟̬̜̤̫͇͈̥̥̜̲̝͎̗͇̲͉̼̰̳̰͙̫̦̜̬͇̪̺̼̘͗̓̇̋̂́̎́͋̓͒̄͂̆̐̅̀͗̍̆̅̀̍͐͌͋̈̉̑͆͆̌͋̐͗͛̂̈́̋̈́̾̐̊̂̌̉̅̌̅́̓̂͗́͗̓̅̿̏̔̇̏̋͆̈̊́͑̽͒̈́̐̓̏͂̒̆̀̅̔̈́̀̽́̿́͊̿͐̔̀̇̀̔̇̇̅̌̽̿̈́̓͒̈́̈̒̓̃̌́͌̌̕̕̕̕̚͘̚̚̕̕͜͜͜͜͝͝͠͝͝͠͝͝͝͝ͅͅͅͅͅͅͅá̷̡̧̧̢̡̧̨̨̡̡̨̛̛̛̭̙̣͈͈̦͖̤̮͓̣̳̹̥̞͓̮͇̫̦̘̝̲͇̙̠͉̱̟̥͔̩͔̱̣͍͉̪̺̜͓̮̞͎̟̣̮̻̺̘͕͉̩̫̜̰̝̘̦͉̠̥͓̮͎̩̙̯͉̰̲̘̺͕̣̠͕̙̝̰̻̤̞̬͎̘̳̱̹̜̬̱̹̙̩̥̱͈̖̱̤͛̃͊̄̋̋̆̑͗̀̓͛́̈́͋͊̏͌͗̎̑̍̌̈́̿̅̔͛͛̀͋̆̀̄́̇͛͗̓̿̽͐̎̒̄̈̾̎̈́̉̎̓̓̈̍̀̈́̑̓́̇̃͆̃̾̓̀̔̍̈́̂̌̀͑̾̀̋͊̈́́͐͛̓͛̉̂̉́̋̾͑̾̎͐̈́̓̒̽̈́͋͒̐͒͌́̌̆̈́̿̄͛͒̓͆͋̄̈́̋̃̈́̿͛͛́̌̊͌͌̎̏͑̀͗͌́̇̈́̽̑̿̐̑̃̕̚̚͘͘͘̕̚̚͜͜͜͜͝͝͝͝͝͝͝ͅͅͅͅr̸̢̨̡̨̨̢̢̨̡̡̪͖̮͇͙̦̱̜̘̟̙͉̺͔͈̤̹̤̱̠̥̥̳̹̟̫̰̲̙̭̯͈̪̫̻̖̱̮͕̯̙͉̪̯̤͕̱̯̺͔͇͍̺̦͍̥͇̪̻̟͓̬̦͔̻̬̠͇̣̤͚̹̬̖̝̠̦̩̭̤͕̝̼͈̰̞̮̲̳̺̮͕̰͓̞͈͎̪̬̳͈̫̩͓̜͚̖͚͍͚̎̈́̎̓͐́̋͜͜͜͜͜ͅͅ  ̶̢̡̢̛̛͕͕̖͓̥̳̪̙̱͚̮̝̘̺̞͍̜͙̣͓̹̬͇̬̖̜̤̳̼̣͉̞̣͚̲͕̱̪͉͍̞̩͍̙̣͙͕̭͉̙̯̼̯͕͔͈̜̟͙͖̤͎͉͖͉͉͍̮̭̹̝̺̪͚̱͇̗̹̲̤̤̝͚͇̘̰̺̼͚̪̮͕̟̗̲̻̤̮͕͈͈̮͍́̀̂̾̂́̈́̍͐́́̀̓̽͛͛̈͗̾̑͐̿̈͋̃̅̏́̔͆̏̈̃́̽́̒̉̈́̓̋͂̅̐̄̿̃͋̂͑͆́͌̋̎̓̓̽̋̔͐́̃̏̂̌̿̿̓̾̾̉̄̆͑͐̓͑͐͊̊͂̏̋̾̆̽̓̒̒̀͒̍́̽̆̇̀̑̋̄̎̐̾̐̈́̑̒̀̆̑̆̾́̀͊̓́̀̓̀̎̆̍̎̓͗̃̐͆̈͑̍̀̈́̋́̀̍̍̽̌͗̚͘͘͘̚̚̚̚̕̚̚̕͘͜͜͜͝͠͝͝͝͝͝͝͠͝͝͝͝͝ͅͅy̶̢̡̢̛̛̛̛̦̗̩̭̳̩͉̟͙͖͍̘̝͙̪̺̟̭͖̫͚͍̹͎͛́̽̆̾̓̓͋́͌̔̑̉͑͋̎̽̾̉̈́̊̋̈́͑͐̔͊̃͐̉̂̿̓̈͆͂͋́̈́͆̃͑͆̓̈́́̋̀̀̐̎̏̈́̊̈̃̈̒̈́̒͌͆̊͐̿̓̾̂̐̒̌͂̇̐̃̈́̒́̐̀͂̊͂̀̈́̔̔̊̔͂̇̆͋̽̌̀̓̀̎̅̽̓̓͑̍̀̀̌̾̽̑̀͛̕͘̕͘̕͘̚̚̚̚͘̕͜͠͝͝͠͝͝͝͝͝͝͝͝͠ǫ̵̨̢̡̨̡̧̡̧̧̨̧̢̡̡̨̛̛͍̼͙̙̜͉̮͎̮͚͉̝̻͇̘̣̜̬͖͉̟̭̭̱͚͎̻̦͈͎̮̬͔̰͙̱̥̰͚̥̭͇͙͙͕̻̞̪̼̗̘͎͚͙̱͍̰͍͔̳͚̲̼̮͚̼͔̜̯̪̮̺̘͎͕̦̫̠̙̳̖̼͈̗̬̦̺̩͖̤̗̺̯̟̗̗͚̱͇̗̥̥͓̙͚͍̮̱͇̱̣͙̙̹̭̳͇̖̺̮͈̭͍͍͙͚̭̫͔̠͈͙̬͈̻̳̝͎͕̟̮͈̞̱͕̭̹͎̟̼̝̠͇͈͓̬̝̺̼̭͎͙̪̻̝̣͔̹̫̯̮̙̣͉̩̜̥̰̠̗̞̝͚̹͇͕̟̭̱͖̲̻͕̼̹͙̦͉̤̭̫̉̔͐̒̓̈̀̈̔̇̊̀́̈̅̆̀̑͑͗͌̎̿͆̐̂͂͗̅́̇̽͊̀̈́͌̋̌͆̆͌̋͊͑̽̈́̈́̋̏̓̔̈́̎̌̂̒̀̈̂̀̂̈͒̉̏̀̎̔͑̆̿́̈́̀͛́͌̾̀̑̀̏̒̑͛̀̉͒̉̆̚̚̕̕̕̚̚̕̕̕̕͜͜͜͜͝͠͠͠͠͝ͅͅͅͅͅͅừ̶̡̛̛̛̛̛͚̞̮͖̮͖̥͍̰̈́̋̐̍̅̈́̃̒́̓̊̈́̐͋̒̆̊̊̏͆̿̈́͂͂͌̿̂͒͒͊̀͊̂̅͛̈́̅̎̀̔̊̈́͂̽̆͛̌͋̀͂͐̔́͑͐̾͌͊̐̂͛̃̽́̉̓̔̈́͂͛̅͑́̄̓̆͑̉̔̀̐̑͂̃͌̓̀̈̔͑͌̃̅̂̈̊͊͌̊̉̃̈̍͐́̔̈́͊͒̿͑̐̃̍̽̈́͆̒̽̈́͗͐̄̔̀́̉̓͌́̓͊́̓͌͂̍̂̈́̄͛̄̀̏̈́̑̃̾͐̀̑͑̓̒̈́̅̾̃̐̀͘̚̚͘̕̚̚͘̕͘͠͠͠͝͝͠͝͝͝͠͝͝͝͝', './media/login/Unknownuser.png')">
+                <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 0H8V1H9V2H19V3H20V15H19V16H1V15H0V1H1V0ZM2 4V14H18V4H2Z" fill="white"></path></svg>
+                Ã©€ãª
+              </div>
+              <div class="folder-item" onclick="showUserInfo('Adrift02', 'Role : UXR', '224.212.1.224','PER : rwxrw-rw-, 766','Last Login : now', 'You', './media/login/login_door.png')">
+                <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 0H8V1H9V2H19V3H20V15H19V16H1V15H0V1H1V0ZM2 4V14H18V4H2Z" fill="white"></path></svg>
+                Adrift02
+              </div>
+            </div>
+
+<div id="userDetailContainer" style="display: none; border-top: 1px solid white; margin-top: 30px; padding-top: 10px; height: 40%;">
+  <div id="userDetail"></div>
+</div>
+          </div>
+
+          <section class="center-panel" style="font-family: dmo !important;" id="memoryTerminal">
+            <!-- 메모리 터미널 출력 -->
+          </section>
+
+          <div class="right-panel">
+            <!-- (옵션: 추가 정보) -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="menu.html">&lt; back</a>
+    </div>
+
+    <script>
+      const bootLines = [
+        "-주 기능 - 양호",
+        "-기억보존장치(아카이브) ON",
+        "-시공간 유지 장치 ON",
+        "-PAM stack processing user credentials... ON...",
+        "-MWI-Protocol Inbound... Receiving protocol...",
+        "-엔드포인트 보안 기능 ON",
+        "-EchoMind Array 배열 복원 중... 인덱스 충돌 감지됨.",
+        "-EXOShell 잠금 상태 점검 중... 위상 정렬률 61%",
+        "-NULLSPACE 교정 중... 외부 간섭 감지됨.",
+        "-PRISM-V 주시 프로세스 시작",
+        ". . . . ."
+      ];
+
+      let index = 0;
+      function typeLines() {
+        if (index < bootLines.length) {
+          const terminal = document.getElementById("memoryTerminal");
+          const line = document.createElement("section");
+          line.textContent = "";
+          terminal.appendChild(line);
+
+          let charIndex = 0;
+          const text = bootLines[index];
+          function typeChar() {
+            if (charIndex < text.length) {
+              line.textContent += text[charIndex];
+              charIndex++;
+              setTimeout(typeChar, 30);
+            } else {
+              index++;
+              setTimeout(typeLines, 150);
+            }
+          }
+          typeChar();
+        } else {
+          const cursor = document.createElement("span");
+          cursor.textContent = "█";
+          cursor.style.animation = "blink 1s step-end infinite";
+          document.getElementById("memoryTerminal").appendChild(cursor);
+        }
+      }
+
+      window.onload = () => {
+        typeLines();
+      };
+
+function showUserInfo(name, role, ip, per, lastlog,dd, imagePath) {
+  const detail = document.getElementById("userDetail");
+  const container = document.getElementById("userDetailContainer");
+  detail.innerHTML = `
+    <div class="user-photo2" style="background-image: url('${imagePath}')"></div>
+    <div class="user-text" style="line-height: 1.8;">
+      <div style="font-size: 22px;">${name}</div>
+      <div style="font-size: 12px;">${role}</div>
+      <div style="font-size: 12px;">${ip}</div>
+      <div style="font-size: 12px;">${per}</div>
+      <div style="font-size: 12px;">${lastlog}</div>
+      <div style="font-size: 12px;">${dd}</div>
+    </div>
+  `;
+  container.style.display = 'block';
+}
+
+function searchUser() {
+  const input = document.getElementById("searchInput").value.trim().toLowerCase();
+  const detail = document.getElementById("userDetail");
+  const container = document.getElementById("userDetailContainer");
+  if (input === "iyo") {
+    detail.innerHTML = `
+      <div class="user-photo2" style="background-image: url('./media/login/iyo.png')"></div>
+      <div class="user-text" style="line-height: 1.8;>
+        <div style="font-size: 12px;>iyo</div>
+        <div style="font-size: 12px;>Gone Away</div>
+        <div style="font-size: 12px;>Gone Away</div>
+      </div>
+    `;
+    container.style.display = 'block';
+  } else {
+    detail.innerHTML = "";
+    container.style.display = 'none';
+  }
+}
+    </script>
+
+    <style>
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+    </style>
+</body>
+</html>
