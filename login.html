@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login Page</title>
+  <style>
+    
+  @font-face {
+  font-family: 'press2p';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./media/f8c7d4a04eee4eea-s.p.ttf') format('truetype');
+}
+
+@media screen and (max-width: 1920px) {
+  .box {
+    transform: scale(0.8);
+  }
+}
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      color: white;
+      font-family: monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'press2p';
+    }
+
+    div{
+      font-family: 'press2p';
+    }
+
+    .box {
+      border: 2px solid white;
+      width: 1200px;
+      height: 900px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; 
+      background-color: black;
+      color: white;
+    }
+    .box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://l3u8e64e5j.ufs.sh/f/screenw.webp') center/cover no-repeat;
+  filter: brightness(40%);
+  z-index: 0;
+}
+
+/* 박스 안 모든 실제 내용은 위로 올림 */
+.box > * {
+  position: relative;
+  z-index: 1;
+}
+
+    #boot-sequence {
+      white-space: pre-wrap;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .login-screen {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-image {
+      border: 2px solid white;
+      width: 200px;
+      height: 200px;
+      margin-bottom: 20px;
+      background-image: url('./media/login/login_door.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .info-text {
+      margin: 5px 0;
+      font-size: 22px;
+    }
+
+    .info-text2 {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    .access-btn {
+      margin-top: 20px;
+      padding: 10px 30px;
+      border: 2px solid white;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .access-btn:hover {
+      background: white;
+      color: black;
+    }
+
+    .version {
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
+      font-size: 12px;
+    }
+
+    .clock {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <!-- BIOS 스타일 부팅 시퀀스 -->
+    <div id="boot-sequence"></div>
+
+    <!-- 하단 정보 -->
+    <div class="version">v915.2.3</div>
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <script>
+    const bootText = [
+      "Initializing hardware...",
+      "Loading system and MWI-Protocol modules...",
+      "Checking memory, dimensional core...",
+      "Detecting drives...",
+      "Boot sequence started...",
+      "System OK.",
+      "Launching user interface..."
+    ];
+
+    const box = document.querySelector('.box');
+    const bootDiv = document.getElementById('boot-sequence');
+
+    function createLoginScreen() {
+      const loginScreen = document.createElement('div');
+      loginScreen.className = 'login-screen';
+      loginScreen.innerHTML = `
+        <div class="user-image"></div>
+        <div class="info-text">Adrift02</div>
+        <div class="info-text2">root</div>
+        <div class="info-text2">MWI-Protocol.active.defenddeathd.start</div>
+        <a href="./menu/menu.html" class="access-btn">Enter</a>
+      `;
+      box.appendChild(loginScreen);
+    }
+
+function startBootSequence() {
+  let lineIndex = 0;
+  const typingSpeed = 5; // 글자 하나 출력 간격 (ms)
+
+  function typeLine(line, callback) {
+    let charIndex = 0;
+
+    function typeChar() {
+      if (charIndex < line.length) {
+        bootDiv.innerText += line.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeChar, typingSpeed);
+      } else {
+        bootDiv.innerText += "\n";
+        const delayBetweenLines = 50 + Math.random() * 400;
+        setTimeout(callback, delayBetweenLines);
+      }
+    }
+
+    typeChar();
+  }
+
+  function typeNextLine() {
+    if (lineIndex < bootText.length) {
+      typeLine(bootText[lineIndex], () => {
+        lineIndex++;
+        typeNextLine();
+      });
+    } else {
+      // 모든 줄 출력 후 전환
+      setTimeout(() => {
+        bootDiv.remove();
+        createLoginScreen();
+        localStorage.setItem('booted', 'true'); // 테스트 끝나면 주석 해제
+      }, 500);
+    }
+  }
+
+  typeNextLine();
+}
+
+    window.onload = () => {
+      // 처음 접속이 아니라면 부팅 생략
+      if (localStorage.getItem('booted') === 'true') {
+        bootDiv.remove();
+        createLoginScreen();
+      } else {
+        startBootSequence();
+      }
+    };
+
+    // 시계 업데이트
+function updateClock() {
+  const now = new Date();
+  const year = 2214; // 고정 연도
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const date = String(now.getDate()).padStart(2, '0');
+  const h = String(now.getHours()).padStart(2, '0');
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const s = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById('clock').innerText =
+    `${year}-${month}-${date} ${h}:${m}:${s}`;
+}
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+</body>
+</html>

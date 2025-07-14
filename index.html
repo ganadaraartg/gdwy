@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login</title>
+<style>
+/* 폰트 추가하기 */
+
+@media screen and (max-width: 1920px) {
+  .box {
+    transform: scale(0.8);
+  }
+}
+
+@font-face {
+  font-family: 'press2p';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./media/f8c7d4a04eee4eea-s.p.ttf') format('truetype');
+}
+
+div, button {
+  font-family: 'press2p';
+}
+
+/* 전체 배경 검정 */
+body, html {
+  margin: 0; padding: 0; height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+/* 박스 스타일 */
+.box {
+  border: 2px solid white;
+  width: 450px;
+  height: 750px;
+  margin-bottom: 140px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 박스 내부 텍스트와 버튼 영역 - 세로/가로 중앙 정렬 */
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 중앙 */
+  align-items: center;     /* 가로 중앙 */
+  padding: 20px;
+  text-align: center;
+}
+
+/* 로그인 프로세스 텍스트와 커서 */
+.login-header {
+  font-size: 20px;
+  margin-bottom: 50px;
+  white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+.blinking-cursor {
+  display: inline-block;
+  width: 10px;
+  background-color: white;
+  margin-left: 5px;
+  animation: blink 1s step-start infinite;
+  vertical-align: bottom;
+  height: 1.2em;
+}
+
+@keyframes blink {
+  50% { background-color: transparent; }
+}
+
+/* Login 버튼 */
+a.login-btn {
+  display: inline-block;
+  margin-top: 45px;
+  padding: 20px 50px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+a.login-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+/* 박스 하단 흰색 영역 */
+.footer {
+  background-color: white;
+  color: black;
+  padding: 15px;
+}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="content">
+    <div class="login-header">
+      Login process...<span class="blinking-cursor"></span>
+    </div>
+    <div style="font-size: 10px; line-height: 1.5; margin-bottom: 20px;">The multiverse interpretation-based protocol of the self-developed system by Dr. Wakaru Mane has been connected. Cease drifting within the passage of time. The flow has consistently been a catastrophe.</div>
+    <a href="./login.html" rel="noopener noreferrer" class="login-btn">Login</a>
+  </div>
+  <div class="footer" style="font-size: 10px; line-height: 1.5; text-align: center;">
+    This protocol enables traversal through eternal spacetime within elements transmitted by special waves.
+  </div>
+</div>
+</body>
+</html>
