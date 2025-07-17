@@ -210,15 +210,14 @@ function startBootSequence() {
   typeNextLine();
 }
 
-    window.onload = () => {
-      // 처음 접속이 아니라면 부팅 생략
-      if (localStorage.getItem('booted') === 'true') {
-        bootDiv.remove();
-        createLoginScreen();
-      } else {
-        startBootSequence();
-      }
-    };
+window.addEventListener('load', () => {
+  if (localStorage.getItem('booted') === 'true') {
+    bootDiv.remove();
+    createLoginScreen();
+  } else {
+    startBootSequence();
+  }
+});
 
     // 시계 업데이트
 function updateClock() {
