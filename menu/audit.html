@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit</title>
+  <style>
+    @font-face {
+      font-family: 'press2p';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../media/f8c7d4a04eee4eea-s.p.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'dmo';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../media/DungGeunMo.ttf') format('truetype');
+    }
+
+    @media screen and (max-width: 1920px) {
+      .box {
+        transform: scale(0.8);
+      }
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+      color: white;
+    }
+
+    div {
+      font-family: 'press2p';
+    }
+
+    .dmo-text {
+      font-family: 'dmo';
+    }
+
+    .box {
+      width: 1200px;
+      height: 900px;
+      padding: 20px;
+      border: 2px solid white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://l3u8e64e5j.ufs.sh/f/screenw.webp') center/cover no-repeat;
+      filter: brightness(40%);
+      z-index: 0;
+    }
+
+    .box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-info {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      border-bottom: 2px solid white;
+      height: 87px;
+      box-sizing: border-box;
+    }
+
+    .user-photo {
+      width: 50px;
+      height: 50px;
+      background: url('../media/login/login_door.png') center/cover no-repeat;
+      border: 2px solid white;
+      margin-right: 10px;
+    }
+
+    .user-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 50px;
+    }
+
+    .user-text div {
+      line-height: 1.2;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+    }
+
+    .inner-box {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid white;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .title-bar {
+      height: 30px;
+      border-bottom: 1px solid white;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      user-select: none;
+      background-color: white;
+      color: black;
+    }
+
+    .title-buttons {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .title-button {
+      width: 14px;
+      height: 14px;
+      border: 1px solid white;
+      background-color: #222;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .title-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .title-button.exit {
+      text-decoration: none;
+      color: white;
+    }
+
+    .content-box {
+      flex-grow: 1;
+      display: flex;
+    }
+
+    .content-left {
+      flex: 2;
+      border-right: 1px solid white;
+      padding: 10px;
+      overflow-y: auto;
+    }
+
+    .content-middle {
+      flex: 4.5;
+      border-right: 1px solid white;
+      padding: 10px;
+      overflow-y: auto;
+      font-family: 'dmo';
+    }
+
+    .content-middle h3 {
+      margin: 10px 0 5px;
+      padding: 5px;
+      background-color: white;
+      color: black;
+      font-size: 20px;
+    }
+
+    .content-middle .setting {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      margin-left: 12px;
+      font-size: 16px;
+      font-family: 'dmo';
+    }
+
+    .content-middle select {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  padding: 2px 6px;
+  font-family: monospace;
+  font-size: 13px;
+  appearance: none;
+  width: 130px; /* 고정 너비 */
+  text-align: center; /* 가운데 정렬 */
+}
+
+.content-middle input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  appearance: auto;
+  cursor: pointer;
+  accent-color: white; /* 체크 표시를 흰색으로 */
+}
+
+/* Apply 버튼 크고 가운데 정렬 */
+.content-middle .setting:last-child {
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.content-middle .setting:last-child button {
+  font-size: 16px;
+}
+
+.apply-btn {
+  font-family: 'press2p';
+  background-color: white;
+  color: black;
+  border: 4px solid white;
+  border-radius: 0; /* 네모로 만들기 */
+  padding: 12px 24px; /* ← 여기서 크기 조절 */
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.apply-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.fw-btn {
+  font-family: 'dmo';
+  background-color: white;
+  color: black;
+  border: 2px solid white;
+  border-radius: 0; /* 네모로 만들기 */
+  padding: 1px 16px; /* ← 여기서 크기 조절 */
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.fw-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+    .content-right {
+      flex: 3.5;
+      padding: 10px;
+      overflow-y: auto;
+      max-height: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    .session-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .session-item.inactive {
+      color: gray;
+    }
+
+    .session-item svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+
+    .session-item.inactive svg {
+      stroke: gray;
+    }
+
+    .log-entry {
+      font-size: 8px;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .footer {
+      height: 40px;
+      border-top: 2px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 15px;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      color: black;
+      text-shadow:
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white;
+    }
+
+    .popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  border: 2px solid white;
+  color: white;
+  padding: 60px 120px;
+  font-size: 32px;
+  text-align: center;
+  z-index: 9999;
+  display: none;
+  user-select: none;
+}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="header-info">
+      <div class="user-photo"></div>
+      <div class="user-text">
+        <div>Adrift02</div>
+        <div>root: - access</div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="inner-box">
+        <div class="title-bar">
+          <div>Audit</div>
+          <div class="title-buttons">
+            <div class="title-button">−</div>
+            <div class="title-button">□</div>
+            <a href="menu.html" class="title-button exit">×</a>
+          </div>
+          
+      <div class="popup" id="accessDeniedPopup">Access Denied</div>
+        </div>
+        <div class="content-box">
+          <div class="content-left">
+            <!-- 세션 목록 -->
+            <!-- 6개 세션 + 1개 아이콘 변경된 세션 -->
+            <div class="session-item inactive"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M11.412 15.655 9.75 21.75l3.745-4.012M9.257 13.5H3.75l2.659-2.849m2.048-2.194L14.25 2.25 12 10.5h8.25l-4.707 5.043M8.457 8.457 3 3m5.457 5.457 7.086 7.086m0 0L21 21" />
+</svg>
+ Session #2026</div>
+            <div class="session-item inactive"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M11.412 15.655 9.75 21.75l3.745-4.012M9.257 13.5H3.75l2.659-2.849m2.048-2.194L14.25 2.25 12 10.5h8.25l-4.707 5.043M8.457 8.457 3 3m5.457 5.457 7.086 7.086m0 0L21 21" />
+</svg>
+ Session #2026</div>
+            <div class="session-item inactive"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M11.412 15.655 9.75 21.75l3.745-4.012M9.257 13.5H3.75l2.659-2.849m2.048-2.194L14.25 2.25 12 10.5h8.25l-4.707 5.043M8.457 8.457 3 3m5.457 5.457 7.086 7.086m0 0L21 21" />
+</svg>
+ Session #2050</div>
+            <div class="session-item inactive"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M11.412 15.655 9.75 21.75l3.745-4.012M9.257 13.5H3.75l2.659-2.849m2.048-2.194L14.25 2.25 12 10.5h8.25l-4.707 5.043M8.457 8.457 3 3m5.457 5.457 7.086 7.086m0 0L21 21" />
+</svg>
+ Session #2198</div>
+            <div class="session-item inactive"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M11.412 15.655 9.75 21.75l3.745-4.012M9.257 13.5H3.75l2.659-2.849m2.048-2.194L14.25 2.25 12 10.5h8.25l-4.707 5.043M8.457 8.457 3 3m5.457 5.457 7.086 7.086m0 0L21 21" />
+</svg>
+ Session #2202</div>
+            <div class="session-item inactive"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M11.412 15.655 9.75 21.75l3.745-4.012M9.257 13.5H3.75l2.659-2.849m2.048-2.194L14.25 2.25 12 10.5h8.25l-4.707 5.043M8.457 8.457 3 3m5.457 5.457 7.086 7.086m0 0L21 21" />
+</svg>
+ Session #???</div>
+            <div class="session-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+</svg> Session #Now</div>
+          </div>
+          <div class="content-middle">
+            <h3>서버 보안 설정</h3>
+            <div class="setting">보안 모듈 상태 <select style="font-family: 'press2p';"><option style="font-family: 'press2p';">ON</option><option style="font-family: 'press2p';">OFF</option></select></div>
+            <div class="setting">로그 데몬 상태 <select style="font-family: 'press2p';"><option style="font-family: 'press2p';">ON</option><option style="font-family: 'press2p';">OFF</option></select></div>
+            <div class="setting">방화벽 상태 <select style="font-family: 'press2p';"><option style="font-family: 'press2p';">ON</option><option style="font-family: 'press2p';">OFF</option></select></div>
+            <div class="setting">ACL 기반 접근 제어 <select style="font-family: 'press2p';"><option style="font-family: 'press2p';">ON</option><option style="font-family: 'press2p';">OFF</option><option style="font-family: 'press2p';">WARNING</option></select></div>
+            <div class="setting">권한 순위 기반 접근 제어 <select style="font-family: 'press2p';"><option style="font-family: 'press2p';">ON</option><option style="font-family: 'press2p';">OFF</option><option style="font-family: 'press2p';">WARNING</option></select></div>
+            <div class="setting">명령어 실행 통제 <select style="font-family: 'press2p';"><option style="font-family: 'press2p';">OFF</option><option style="font-family: 'press2p';">ON</option></select></div>
+            <div class="setting">비인가자 접근 차단 <select style="font-family: 'press2p';"><option style="font-family: 'press2p';">ON</option><option style="font-family: 'press2p';">OFF</option></select></div>
+            <div class="setting">운영 감시(WatchDog) <select style="font-family: 'press2p';"><option style="font-family: 'press2p';">OFF</option><option style="font-family: 'press2p';">ON</option></select></div>
+
+            <h3>외부 접근 통제</h3>
+            <div class="setting" style="margin-top: 20px; margin-bottom: 18px;">방화벽 <button class="fw-btn">방화벽 설정</button></div>
+
+            <h3>보안 감사</h3>
+            <div class="setting">로그 설정 <input type="checkbox" checked></div>
+            <div class="setting">시스템 모니터링 <input type="checkbox" checked></div>
+            <div class="setting">무결성 관리 <input type="checkbox"></div>
+            <div class="setting">사용자 추적 <input type="checkbox" checked></div>
+
+            <h3 style="text-align: center;">정책을 적용하겠습니까?</h3>
+            <div class="setting" style="margin-top: 20px;"><button class="apply-btn">Apply</button></div>
+          </div>
+          <div class="content-right" id="logBox"></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <a href="./menu.html">&lt; back</a>
+    </div>
+    <script>
+      const logBox = document.getElementById("logBox");
+      const logs = [
+        "[INIT] Monitoring started...",
+        "[SYS] Port 442 listening.",
+        "[ACCESS] Incoming connection detected.",
+        "[AUTH] Token verified.",
+        "[SESSION] ID 03FF-A established.",
+        "[WARN] Unusual activity noticed.",
+        "[DATA] Transfer initiated.",
+        "[DATA] Transfer completed.",
+        "[SYS] Temp cache cleared.",
+        "[LOG] Audit trail updated.",
+        "[SYS] Configuration synced.",
+        "[SYS] Memory usage: 72%.",
+        "[ERROR] Timeout on channel 6.",
+        "[CLOSE] Session #002 terminated.",
+        "[EXIT] Remote disconnect."
+      ];
+
+      const logHistory = JSON.parse(localStorage.getItem("logHistory") || "[]");
+      logHistory.forEach(entry => {
+        const p = document.createElement("div");
+        p.className = "log-entry";
+        p.textContent = entry;
+        logBox.appendChild(p);
+      });
+
+      function addLog() {
+        const newLog = logs[Math.floor(Math.random() * logs.length)];
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('ko-KR', {
+          hour12: false,
+          minute: '2-digit',
+          second: '2-digit'
+        });
+        const fullLog = `[${timeStr}] ${newLog}`;
+        const p = document.createElement("div");
+        p.className = "log-entry";
+        p.textContent = fullLog;
+        logBox.insertBefore(p, logBox.firstChild);
+        while (logBox.children.length > 45) {
+          logBox.removeChild(logBox.lastChild);
+          logHistory.shift();
+        }
+        logHistory.push(fullLog);
+        localStorage.setItem("logHistory", JSON.stringify(logHistory));
+      }
+
+      function scheduleLog() {
+        addLog();
+        const delay = Math.floor(Math.random() * 4000) + 1000;
+        setTimeout(scheduleLog, delay);
+      }
+
+      scheduleLog();
+
+let accessDeniedCount = 0;
+const popup = document.getElementById("accessDeniedPopup");
+
+function showAccessDenied() {
+  accessDeniedCount++;
+
+  if (accessDeniedCount >= 10) {
+    popup.textContent = "DO NOT ATTEMPT";
+  } else {
+    popup.textContent = "Access Denied";
+  }
+
+  popup.style.display = "block";
+
+  setTimeout(() => {
+    popup.style.display = "none";
+  }, 2000);
+}
+
+document.querySelector(".fw-btn").addEventListener("click", showAccessDenied);
+document.querySelector(".apply-btn").addEventListener("click", showAccessDenied);
+
+    </script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Directory</title>
+  <style>
+    @font-face {
+      font-family: 'press2p';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../media/f8c7d4a04eee4eea-s.p.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'dmo';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../media/DungGeunMo.ttf') format('truetype');
+    }
+
+@media screen and (max-width: 1920px) {
+  .box {
+    transform: scale(0.8);
+  }
+}
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+      color: white;
+    }
+
+    div {
+      font-family: 'press2p';
+    }
+
+    .dmo-text {
+  font-family: 'dmo';
+}
+
+    .box {
+      width: 1200px;
+      height: 900px;
+      padding: 20px;
+      border: 2px solid white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://l3u8e64e5j.ufs.sh/f/screenw.webp') center/cover no-repeat;
+      filter: brightness(40%);
+      z-index: 0;
+    }
+
+    .box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+.header-info {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 2px solid white;
+  height: 87px; /* 통일된 높이로 지정 */
+  box-sizing: border-box;
+}
+
+    .user-photo {
+      width: 50px;
+      height: 50px;
+      background: url('../media/login/login_door.png') center/cover no-repeat;
+      border: 2px solid white;
+      margin-right: 10px;
+    }
+
+    .user-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 50px;
+    }
+
+    .user-text div {
+      line-height: 1.2;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+    }
+
+    .inner-box {
+      flex-grow: 1;
+      border: 1px solid white;
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .title-bar {
+      height: 30px;
+      border-bottom: 1px solid white;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      user-select: none;
+      background-color: white;
+      color: black;
+    }
+
+    .title-buttons {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .title-button {
+      width: 14px;
+      height: 14px;
+      border: 1px solid white;
+      background-color: #222;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .title-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .title-button.exit {
+      text-decoration: none;
+      color: white;
+    }
+
+    .content-box {
+      flex-grow: 1;
+      display: flex;
+    }
+
+    .left-panel, .center-panel, .right-panel {
+      padding: 10px;
+      overflow-y: auto;
+    }
+
+    .left-panel {
+      width: 25%;
+      border-right: 1px solid white;
+    }
+
+    .folder-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+    
+    .folder-item1 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .folder-item:hover {
+      text-decoration: underline;
+    }
+
+    .folder-item svg {
+      flex-shrink: 0;
+    }
+
+    .center-panel {
+      width: 50%;
+      border-right: 1px solid white;
+    }
+
+    .right-panel {
+      width: 25%;
+    }
+
+    .footer {
+      height: 40px;
+      border-top: 2px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 15px;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      color: black;
+      text-shadow:
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white;
+    }
+  </style>
+<script>
+  function showFileContent(name, content, info) {
+    const contentBox = document.getElementById('file-content');
+    const infoBox = document.getElementById('file-info');
+
+    const extension = name.split('.').pop().toLowerCase();
+
+    if (extension === 'txt') {
+      contentBox.innerHTML = `<span style="font-family: 'dmo'; white-space: pre-wrap;">${content}</span>`;
+    } else if (['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(extension)) {
+      contentBox.innerHTML = `<img src="${content}" alt="${name}" style="transform: rotate(10deg); max-width: 80%; max-height: 100%; border: 2px solid white; margin-top:40px; margin-left:20px">`;
+    } else {
+      contentBox.innerHTML = `<em>미지원 파일 형식입니다: ${extension}</em>`;
+    }
+
+    if (infoBox) {
+      infoBox.innerHTML = info;
+    }
+  }
+</script>
+</head>
+<body>
+  <div class="box">
+    <div class="header-info">
+      <div class="user-photo"></div>
+      <div class="user-text">
+        <div>Adrift02</div>
+        <div>root: - access</div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="inner-box">
+        <div class="title-bar">
+          <div>Directory</div>
+          <div class="title-buttons">
+            <div class="title-button">−</div>
+            <div class="title-button">□</div>
+            <a href="menu.html" class="title-button exit">×</a>
+          </div>
+        </div>
+        <div class="content-box">
+          <div class="left-panel">
+            <h3> /root</h3>
+            <div class="folder-item1">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 0H8V1H9V2H19V3H20V15H19V16H1V15H0V1H1V0ZM2 4V14H18V4H2Z" fill="white"></path></svg>
+              boot
+            </div>
+            <div class="folder-item1">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 0H8V1H9V2H19V3H20V15H19V16H1V15H0V1H1V0ZM2 4V14H18V4H2Z" fill="white"></path></svg>
+              etc
+            </div>
+            <div class="folder-item1">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 0H8V1H9V2H19V3H20V15H19V16H1V15H0V1H1V0ZM2 4V14H18V4H2Z" fill="white"></path></svg>
+              bin
+            </div>
+            <div class="folder-item1">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 0H8V1H9V2H19V3H20V15H19V16H1V15H0V1H1V0ZM2 4V14H18V4H2Z" fill="white"></path></svg>
+              sbin
+            </div>
+            <div class="folder-item1">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 0H8V1H9V2H19V3H20V15H19V16H1V15H0V1H1V0ZM2 4V14H18V4H2Z" fill="white"></path></svg>
+              home
+            </div>
+            <div class="folder-item1">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 0H8V1H9V2H19V3H20V15H19V16H1V15H0V1H1V0ZM2 4V14H18V4H2Z" fill="white"></path></svg>
+              var
+            </div>
+            <div class="folder-item1">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 0H8V1H9V2H19V3H20V15H19V16H1V15H0V1H1V0ZM2 4V14H18V4H2Z" fill="white"></path></svg>
+              dev/MWI
+            </div>
+            <div class="folder-item" onclick="showFileContent('log.txt', '-2026_OrS_MANE_WAKARU_계정 생성 및 환경 구성\n\n-2026_OrS_DDO0915_계정 생성 및 권한 부여\n\n-2027_OrS_ALVIN7680_계정 생성 및 권한 부여\n\n-2027_OrS_iyo_계정 생성 및 권한 부여\n\n-2027_OrS_Hobal_계정 생성 및 권한 부여\n\n-2077_PaW1_tomsen_계정 생성\n\n-2077_PaW2_Johnny_Silverhand_계정 생성\n\n-2123_PaW3_Pard_계정 생성\n\n-2202_AW_Adrift01_계정 생성\n\n-2214_AW_???_계정 생성\n\n-2214_AW_Adrift02_계정 생성', '<p>파일명: log.txt</p> <p>크기: 20KB</p><p>수정 날짜: 2214-07-12</p>')">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.46023 0.078125V0.805398H8.1875V1.53267H8.91477V2.25994H9.64205V2.98722H10.3693V3.71449H11.0966V4.44176H11.8239V13.8963H11.0966V14.6236H0.914773V13.8963H0.1875V0.805398H0.914773V0.078125H7.46023ZM7.46023 2.25994H6.73295V5.16903H9.64205V4.44176H8.91477V3.71449H8.1875V2.98722H7.46023V2.25994ZM1.64205 1.53267V13.169H10.3693V6.62358H6.00568V5.89631H5.27841V1.53267H1.64205Z" fill="white"></path></svg>
+              log.txt
+            </div>
+            <div class="folder-item" onclick="showFileContent('data.txt', '[데이터 열람 권한이 없습니다.]', '<p>파일명: data.txt</p><p>크기: 12KB</p><p>수정 날짜: 2026-07-05</p>')">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.46023 0.078125V0.805398H8.1875V1.53267H8.91477V2.25994H9.64205V2.98722H10.3693V3.71449H11.0966V4.44176H11.8239V13.8963H11.0966V14.6236H0.914773V13.8963H0.1875V0.805398H0.914773V0.078125H7.46023ZM7.46023 2.25994H6.73295V5.16903H9.64205V4.44176H8.91477V3.71449H8.1875V2.98722H7.46023V2.25994ZM1.64205 1.53267V13.169H10.3693V6.62358H6.00568V5.89631H5.27841V1.53267H1.64205Z" fill="white"></path></svg>
+              data.txt
+            </div>
+            <div class="folder-item" onclick="showFileContent('readme.txt', '안녕하신가. 미래인. 혹은 이 프로토콜을 통한 통신을 하고있을 낯선 이.\n닥터 안은채일세. 혹은 와카루 마네라고 불러도 상관 없다네.\n이 Pastcore를 사용하고 있을 정도라면 어느 정도 MWI-Protocol에 대한\n이해가 있으리라 생각을 하고 있겠네. 하지만 그렇지 않은 이가 있을지도\n모르니, 친히 알려주도록하지.\n\nMWI-Protocol은 다세계 해석 기반의 통신 프로토콜로 수신만 가능하다면\n시공간을 초월한 통신을 할 수 있다네. 이 세계는 관측, 측정하는 것으로\n우주가 분기되는 MWI적 구조이기 때문이지. 모든 가능한 상태의 세계는 존재하고, 관측을 통해 그 중 하나가 우리의 현실로 고정되는 것일세.\n\nMWI-Protocol을 통해 Pastcore 시스템을 운용하면 모든 시공간에서 손 쉬운 통신 및 접속이 가능하지. 자네가 과거의 이 글을 읽는 것 처럼 말이야. 사실 과거의 글을 읽는 것 자체는 별 거 아니겠지. 하지만, 자네가 읽고있는 이 글이 수 초 전에 작성된 것이라고 하면 믿겠나? 바로 그게 Pastcore의 시스템일세.\n\n물론 현 시점(2026)에선 창시자인 내가 가장 오래된 Pastcore의 사용자겠지. 당연한 일일세. 이 프로토콜을 수신할 장치는 과거에 없으니까. 누군가가 미래에서 과거로 가서 MWI-Protocol을 수신하면 또 모를 일이지만, 안타깝게도 과거의 인물은 접속하고 있지 않고있어.\n\n또한 자네가 알지는 모르겠지만, 과거와의 통신... 시간축을 거슬러 올라가는 정보전달은 다른 분기의 우주를 생성하는 것이야. 즉, 자네는 현재 자네가 사는 현실의 과거를 보는 것이 아닌, 그와 동일한 데이터의 과거를 관측하여 분기 우주를 시뮬레이트 하고 있는 셈이라는거지.\n\n유감일세. 하지만 걱정말게. 내가 계속 옆에 있을테니까.', '<p>파일명: readme.txt</p><p>크기: 51KB</p><p>수정 날짜: 2026-07-11</p>')">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.46023 0.078125V0.805398H8.1875V1.53267H8.91477V2.25994H9.64205V2.98722H10.3693V3.71449H11.0966V4.44176H11.8239V13.8963H11.0966V14.6236H0.914773V13.8963H0.1875V0.805398H0.914773V0.078125H7.46023ZM7.46023 2.25994H6.73295V5.16903H9.64205V4.44176H8.91477V3.71449H8.1875V2.98722H7.46023V2.25994ZM1.64205 1.53267V13.169H10.3693V6.62358H6.00568V5.89631H5.27841V1.53267H1.64205Z" fill="white"></path></svg>
+              readme.txt
+            </div>
+            <div class="folder-item" onclick="showFileContent('a01log.txt', 'FASGAGGA$$@T$@@$@@$VGB$HSB$^B@^Q#H%B#\n%Q#B%N%SNB@#HB%BW%S%#WWHB%##^AB%N^ZNB#WZ^AA\nSDFASGGAWAEAFAFANYYTANEANETREANAEY\nNAYNAYAN%YAANYAN&@&@&@#$%#GV$YANYRANRYANRYANYR\nAY@#^@#^H^#@N@NREAEMYAMYEAMYANANNAYNAYMNR!#B\n%B#AYRAMYAMA^%#*&#^NMANMAMNYANYMRAY\nRAMY@#^B#^#AMYRNAMYNRANMYRNAYRAN#@^V#^BQYRAYAMNYAMYNAMYNR@#^B$^@\n#$^BG#AMNYRANYNAYAYMAMYNAMYNEAMNYNAYNAYE\nANYBEABVV%ABVV$Y%V^S^SS^WN$AWANATN$TBNABW%S@^N^@NB!%^*!B#% #!\n%VV*%!#B#B%!!#%B!VI#HQWNHN&J%SEAYN%#NYAN$AYNY$$NWN$EN$\nYW$YN#$Y#N$N#Y$SNW$NWYN$@$\nN@NYN$Y$N^$MN#J^@^#^^NH^$N@^$N@^$@N#N^B^A@$N^N@$N$$@^AAA^$N\nB$B^WXVTWBVS#$^BVWZ$GESMYTYN$WEBHVEA\n%Q#%NJNB$WZYVES^NHAW@#BAV^W^N#JEABVV%ABVV$Y%V^S^SS^WN$A\nWANATN$TBNABW%S@^N^@NB!%^*!B#% #!%VV*%!#\nB#B%!!#%B!VI#HQWNHN&J%SEAYN%#NYANTREANAEYNAYNAYAN%YAANYAN\n&@&@&@#$%#GV$YANY\nRANRYANRYANYRAY@#^@#^H^#@N@NREAEMYAMYEAMYA\nNANNAYNAYMNR!#B%B#AYRAMYAMA^%#*&#^NM\nANMAMNYANYMRAYRAMY@#^B#^#AMYRNAMYNRANMYRNAYRAN#\n@^V#^BQYRAYAMNYAMYNAMYNR@#^B$^@#$^BG#AMNYRANYNAYAY\nMAMYNAMYNEAMNYNAYNAYEANYBEABVV%ABVV$\nY%V^S^SS^WN$AWANATN$TBNABW%S@^N^@NB!%^*!B#\n% #!%VV*%!#B#B%!!#%B!VI#HQWNHN&J%SEAYN%#NYAN$AYNY$$NWN$EN$YW$YN#$\nY#N$N#Y$SNW$NWYN$@$N@NYN$Y$N^$MN#J^@^#^^NH^$N@^$N\n@^$@N#N^B^A@$N^N@$N$$@^AAA^$NB$B^WXVTWBVS#$^BVWZ$GES', '<p>파일명: a01log.txt</p><p>크기: 0KB</p><p>수정 날짜: 2202-09-12</p>')">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.46023 0.078125V0.805398H8.1875V1.53267H8.91477V2.25994H9.64205V2.98722H10.3693V3.71449H11.0966V4.44176H11.8239V13.8963H11.0966V14.6236H0.914773V13.8963H0.1875V0.805398H0.914773V0.078125H7.46023ZM7.46023 2.25994H6.73295V5.16903H9.64205V4.44176H8.91477V3.71449H8.1875V2.98722H7.46023V2.25994ZM1.64205 1.53267V13.169H10.3693V6.62358H6.00568V5.89631H5.27841V1.53267H1.64205Z" fill="white"></path></svg>
+              a01log.txt
+            </div>
+            <div class="folder-item" onclick="showFileContent('audit.txt', '상당히 흥미로운 내용이 많다네, 미래인 군.\n특정할 사람은 없으니 혼잣말처럼 말하겠네.\n\n이 시스템을 통해 여러 데이터와 정보를 모았다네.\n단 시간에 말이야. 뭐, 당연한 일이야. 비록 나는 2026년에 살지만, 이 통신을 통해 미래에 있는 모든 사람들과 즉석 통신이 가능하니까. 이 통신에 대한 자세한건 비밀이야.\n\n만난 미래인은 고작 한 자릿수에 불과하지만 말이지, 상당히 화려하게 인류는 멸망했군?\n여러 미래에서 관측되는 인류의 멸종 시나리오를 수집하고 분석하는데, 뭐랄까... 좋네.\n다채로운 생각을 하게 만들어.\n\n일단, 이쪽까지 위험하게 하는 멸종 시나리오가 있어. 정보를 먹는 존재라... 이건 참 귀찮은 일이야.\n심연을 들여다보면, 그 심연도 나를 들여다본다는 느낌일까. 아주 흥미롭다네.\n\n즉, 더 이상 Pastcore도 안전지대는 아니게 되었단 말일세.\n아무튼 더욱 알려주게. 평행세계를 조율할 정도인 나는 어떻게든 관찰을 하고싶으니까. 무슨 말인지 알거라 믿겠네.\n\n【그레이 구로 인한 멸망】\n【정보를 먹는 존재의 포착】\n【핵전쟁】\n【우주 개척 중 재앙】', '<p>파일명: auditctl.txt</p><p>크기: 21KB</p><p>수정 날짜: 2026-07-20</p>')">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.46023 0.078125V0.805398H8.1875V1.53267H8.91477V2.25994H9.64205V2.98722H10.3693V3.71449H11.0966V4.44176H11.8239V13.8963H11.0966V14.6236H0.914773V13.8963H0.1875V0.805398H0.914773V0.078125H7.46023ZM7.46023 2.25994H6.73295V5.16903H9.64205V4.44176H8.91477V3.71449H8.1875V2.98722H7.46023V2.25994ZM1.64205 1.53267V13.169H10.3693V6.62358H6.00568V5.89631H5.27841V1.53267H1.64205Z" fill="white"></path></svg>
+              auditctl.txt
+            </div>
+            <div class="folder-item"
+     onclick="showFileContent(
+       'photo.png',
+       '../media/img/alvin333.jpg',
+       '<p>파일명: photo.png</p><p>크기: 240KB</p><p>수정 날짜: 2026-09-15</p>')">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+</svg>
+
+  photo.png
+</div>
+          </div>
+          <div class="center-panel">
+            <h3>File Content</h3>
+            <p id="file-content" style="font-family: dmo;">파일 내용을 여기에 표시합니다.</p>
+          </div>
+          <div class="right-panel">
+            <h3>File Info</h3>
+            <div id="file-info" style="font-family: dmo;">
+              <p>Filename : ----</p>
+              <p>Size : ----</p>
+              <p>Date Modified : ----</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="./menu.html">&lt; back</a>
+    </div>
+  </div>
+</body>
+</html>
