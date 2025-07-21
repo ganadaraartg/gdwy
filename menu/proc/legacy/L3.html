@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+  <title>Process</title>
+  <style>
+    @font-face {
+      font-family: 'press2p';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../../../media/f8c7d4a04eee4eea-s.p.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'dmo';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../../../media/DungGeunMo.ttf') format('truetype');
+    }
+
+@media screen and (max-width: 1920px) {
+  .box {
+    transform: scale(0.8);
+  }
+}
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+      color: white;
+    }
+
+    div {
+      font-family: 'press2p';
+    }
+
+    .dmo-text {
+  font-family: 'dmo';
+}
+
+    .box {
+      width: 1200px;
+      height: 900px;
+      padding: 20px;
+      border: 2px solid white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://l3u8e64e5j.ufs.sh/f/screenw.webp') center/cover no-repeat;
+      filter: brightness(40%);
+      z-index: 0;
+    }
+
+    .box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+.header-info {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 2px solid white;
+  height: 87px; /* 통일된 높이로 지정 */
+  box-sizing: border-box;
+}
+
+    .user-photo {
+      width: 50px;
+      height: 50px;
+      background: url('../../../media/login/login_door.png') center/cover no-repeat;
+      border: 2px solid white;
+      margin-right: 10px;
+    }
+
+    .user-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 50px;
+    }
+
+    .user-text div {
+      line-height: 1.2;
+    }
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.inner-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+    .title-bar {
+      height: 30px;
+      border-bottom: 1px solid white;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      user-select: none;
+      background-color: white;
+      color: black;
+    }
+
+    .title-buttons {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .title-button {
+      width: 14px;
+      height: 14px;
+      border: 1px solid white;
+      background-color: #222;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .title-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .title-button.exit {
+      text-decoration: none;
+      color: white;
+    }
+
+.content-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.footer {
+  height: 40px;
+  border-top: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 15px;
+}
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      color: black;
+      text-shadow:
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white;
+    }
+
+
+#terminal-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 0; /* 100% 대신 0으로 설정 */
+}
+
+.legacy-title {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 28px;
+  flex-shrink: 0;
+  font-family: 'dmo';
+}
+
+.legacy-grid {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 50px;
+}
+
+/* 스크롤 커스텀 */
+.legacy-content::-webkit-scrollbar {
+  width: 12px;
+}
+.legacy-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.legacy-content::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 0px;
+}
+
+.legacy-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 50px;
+  gap: 30px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.legacy-top-row {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  max-width: 1000px;
+  align-items: center;
+}
+
+.legacy-image-box.small {
+  max-width: 500px;
+  padding: 4px;
+  flex-shrink: 0;
+  border: 2px solid white;
+}
+
+.legacy-side-text {
+  flex-grow: 1;
+  font-family: 'dmo';
+  text-align: left;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.legacy-image-box {
+  border: 2px solid white;
+  padding: 5px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.legacy-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.legacy-text {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  gap: 50px;
+  justify-content: space-between;
+}
+
+.legacy-text-left,
+.legacy-text-right {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: 'dmo';
+}
+
+
+.side-header {
+  font-size: 10px;
+  font-weight: normal;
+  color: white;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.side-title {
+  font-size: 28px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.side-subtitle {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.4;
+  margin-top: 4px;
+  font-family: 'dmo';
+}
+
+.side-footer {
+  font-size: 16px;
+  color: gray;
+  margin-top: auto;
+  line-height: 1.2;
+  font-family: 'dmo';
+}
+
+
+  </style>
+
+</head>
+<body>
+  <div class="box">
+    <div class="header-info">
+      <div class="user-photo"></div>
+      <div class="user-text">
+        <div>Adrift02</div>
+        <div>root: - access</div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="inner-box">
+        <div class="title-bar">
+          <div>Legacy Article</div>
+          <div class="title-buttons">
+            <div class="title-button">−</div>
+            <div class="title-button">□</div>
+            <a href="../legacy.html" class="title-button exit">×</a>
+          </div>
+        </div>
+<div class="content-box" id="terminal-container">
+  <!-- 제목 영역 -->
+  <div class="legacy-title">대한민국 작가 '원일', 노벨문학상 수상</div>
+<div class="legacy-content">
+  <div class="legacy-top-row">
+    <div class="legacy-image-box small">
+      <img src="../legacy/Legimg/L3.png" alt="Legacy Image" class="legacy-image">
+    </div>
+    <div class="legacy-side-text">
+      <div class="side-header">[Culture/Literature]</div>
+        <h2 style="font-weight: normal;" class="side-title">"제2의 한강 탄생?" 대한민국 작가 '원일', 노벨문학상 수상…문학계 충격과 감동의 물결</h2>
+        <div class="side-subtitle">국내 문단 "지금껏 보지 못한 작가였다"</div>
+        <div class="side-footer">
+          2029.12.11 | 서울 | 송채윤 기자<br />
+      </div>
+      <p style="line-height: 1.2; font-size: 18px;">
+        대한민국 문학계에 역사적인 이정표가 세워졌다. 9일 새벽(현지시간), 스웨덴 한림원은 2025년 노벨 문학상 수상자로 대한민국의 소설가 '원일' 양을 선정했다고 공식 발표했다. 한국 문학이 세계의 중심에 다시 한 번 우뚝 선 순간이었다.
+심사위원단은 원일 작가의 작품에 대해 “개인의 윤리와 존재의 해체를 집요하게 탐문하면서도, 시대를 응시하는 눈길을 결코 거두지 않는 냉철한 시선”이라며 극찬했다.
+특히 대표작 『그먹최네』와 『구더기를 모으는 법』은 “폭력과 애도의 미학을 동시적으로 성취한 전례 없는 문학적 실험”으로 평가받고 있다.</p>
+    </div>
+  </div>
+
+  <div class="legacy-text">
+    <div class="legacy-text-left">
+      <p style="line-height: 1.4; font-size: 18px;">
+대한민국 안양의 한 조용한 아파트. 새벽 3시, 노벨상 발표를 접한 원일 작가는 취재진 앞에서 “나 자신도 아직 믿기지 않는다”며 “글을 쓸 때마다
+나는 그저 어두운 방에 앉아 조용히 있는 사람이었다. 독자들이 나의 고요한 방에 귀 기울여주어 고맙다”고 밝혔다.
+2002년생으로 알려진 원일 양은 2020년대 초반, 한국 독립문학계에서 활동을 시작하며 특유의 실험성과 강렬한 주제의식으로 마니아 독자층을 형성했다.
+이후 『그먹최네』이 국내외 문학상을 휩쓸며 이름을 알렸고, 후속작 『구더기를 모으는 법』은 10개 언어로 번역되며 문단에 센세이션을 일으켰다.
+</p>
+    </div>
+    <div class="legacy-text-right">
+      <p style="line-height: 1.4; font-size: 18px;">
+        한강 작가에 이어 한국 문학사에서 두 번째 노벨 문학상 수상자라는 쾌거에 국내 문단은 경사 분위기다.
+        문학평론가 김태훈 씨는 “원일은 문장 하나하나가 불쾌하고 동시에 아름답다. 전후 감각을 뛰어넘는 진정한 포스트포스트 작가”라고 평가했다.
+        일부 문단에서는 ‘제2의 한강’이라는 수식어도 등장했지만, 이를 넘어서 “한국 문학의 또 다른 축이 만들어졌다”는 분석이 지배적이다.
+        지금 서점가에선 『그먹세최』와 『구더기를 모으는 법』의 리커버판이 동이 나고 있다.
+        한편 문화체육관광부는 2025년을 “한국문학 세계화 원년”으로 선포하며, 원일 작가의 수상을 기념한 국제 문학 전시회를 예고했다.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+</div>
+  </div>
+      <div class="footer">
+      <a href="../legacy.html">&lt; back</a>
+    </div>
+</body>
+</html>

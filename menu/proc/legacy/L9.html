@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+  <title>Process</title>
+  <style>
+    @font-face {
+      font-family: 'press2p';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../../../media/f8c7d4a04eee4eea-s.p.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'dmo';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../../../media/DungGeunMo.ttf') format('truetype');
+    }
+
+@media screen and (max-width: 1920px) {
+  .box {
+    transform: scale(0.8);
+  }
+}
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+      color: white;
+    }
+
+    div {
+      font-family: 'press2p';
+    }
+
+    .dmo-text {
+  font-family: 'dmo';
+}
+
+    .box {
+      width: 1200px;
+      height: 900px;
+      padding: 20px;
+      border: 2px solid white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://l3u8e64e5j.ufs.sh/f/screenw.webp') center/cover no-repeat;
+      filter: brightness(40%);
+      z-index: 0;
+    }
+
+    .box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+.header-info {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 2px solid white;
+  height: 87px; /* 통일된 높이로 지정 */
+  box-sizing: border-box;
+}
+
+    .user-photo {
+      width: 50px;
+      height: 50px;
+      background: url('../../../media/login/login_door.png') center/cover no-repeat;
+      border: 2px solid white;
+      margin-right: 10px;
+    }
+
+    .user-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 50px;
+    }
+
+    .user-text div {
+      line-height: 1.2;
+    }
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.inner-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+    .title-bar {
+      height: 30px;
+      border-bottom: 1px solid white;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      user-select: none;
+      background-color: white;
+      color: black;
+    }
+
+    .title-buttons {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .title-button {
+      width: 14px;
+      height: 14px;
+      border: 1px solid white;
+      background-color: #222;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .title-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .title-button.exit {
+      text-decoration: none;
+      color: white;
+    }
+
+.content-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.footer {
+  height: 40px;
+  border-top: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 15px;
+}
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      color: black;
+      text-shadow:
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white;
+    }
+
+
+#terminal-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 0; /* 100% 대신 0으로 설정 */
+}
+
+.legacy-title {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 28px;
+  flex-shrink: 0;
+  font-family: 'dmo';
+}
+
+.legacy-grid {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 50px;
+}
+
+/* 스크롤 커스텀 */
+.legacy-content::-webkit-scrollbar {
+  width: 12px;
+}
+.legacy-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.legacy-content::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 0px;
+}
+
+.legacy-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 50px;
+  gap: 30px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.legacy-top-row {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  max-width: 1000px;
+  align-items: center;
+}
+
+.legacy-image-box.small {
+  max-width: 500px;
+  padding: 4px;
+  flex-shrink: 0;
+  border: 2px solid white;
+}
+
+.legacy-side-text {
+  flex-grow: 1;
+  font-family: 'dmo';
+  text-align: left;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.legacy-image-box {
+  border: 2px solid white;
+  padding: 5px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.legacy-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.legacy-text {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  gap: 50px;
+  justify-content: space-between;
+}
+
+.legacy-text-left,
+.legacy-text-right {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: 'dmo';
+}
+
+
+.side-header {
+  font-size: 10px;
+  font-weight: normal;
+  color: white;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.side-title {
+  font-size: 28px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.side-subtitle {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.4;
+  margin-top: 4px;
+  font-family: 'dmo';
+}
+
+.side-footer {
+  font-size: 16px;
+  color: gray;
+  margin-top: auto;
+  line-height: 1.2;
+  font-family: 'dmo';
+}
+
+
+  </style>
+
+</head>
+<body>
+  <div class="box">
+    <div class="header-info">
+      <div class="user-photo"></div>
+      <div class="user-text">
+        <div>Adrift02</div>
+        <div>root: - access</div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="inner-box">
+        <div class="title-bar">
+          <div>Legacy Article</div>
+          <div class="title-buttons">
+            <div class="title-button">−</div>
+            <div class="title-button">□</div>
+            <a href="../legacy.html" class="title-button exit">×</a>
+          </div>
+        </div>
+<div class="content-box" id="terminal-container">
+  <!-- 제목 영역 -->
+  <div class="legacy-title">공격은 ‘통하지 않았다’</div>
+<div class="legacy-content">
+  <div class="legacy-top-row">
+    <div class="legacy-image-box small">
+      <img src="../legacy/Legimg/L9.png" alt="Legacy Image" class="legacy-image">
+    </div>
+    <div class="legacy-side-text">
+      <div class="side-header">[BREAK NEWS]</div>
+        <h2 style="font-weight: normal;" class="side-title">“공격은 ‘통하지 않았다’”</h2>
+        <div class="side-subtitle">인류, 정체불명의 ‘정보포식자’에 첫 군사 대응… 전면 실패</div>
+        <div class="side-footer">
+          제14합동전략사령부, 정오 브리핑 中<br />
+          2070년 4월 4일
+      </div>
+      <p style="line-height: 1.2; font-size: 18px;">
+        지난 2234년 2월 15일 06시 30분, 북태평양 작전구역에서 실시된 ‘타나토스 대응 실험(TDR-01)’이 전면 실패로 끝났다는 합참 발표가 있었다.
+        이 대응은 인류가 ‘정보포식자(Information Predators, 일명 IPs)’로 명명한 미지의 실존에 대한 사상 첫 물리적 대응이었다.</p>
+      <p style="line-height: 1.2; font-size: 18px;">
+        그러나 결과는 참담했다. 어떠한 공격도 명중하지 않았다. 오히려 ‘통과’하거나 ‘무효화’되었다는 보고가 잇따랐고,
+        작전 직후 제6전투단 통신이 통째로 사라지는 현상까지 포착되었다. 심지어 전투단의 통신 로그와 작전기록,
+        일부 승조원의 기록까지 삭제되어, 그들이 어떻게 되었는지 조차 불분명해졌다는 소식이다.
+      </p>
+    </div>
+  </div>
+
+  <div class="legacy-text">
+    <div class="legacy-text-left">
+      <p style="line-height: 1.4; font-size: 18px;">
+        국방기술연구원(NIDR)의 이환준 박사는 작전 분석 결과를 인용하며 다음과 같이 설명했다.
+        “뭔가를 쏘았고, 그것이 무언가를 향했지만, ‘존재하지 않는 공간’을 겨냥한 것이나 다름없었습니다.
+        포식자는 데이터 블록의 상위 차원에 존재하며, 우리의 탄도나 에너지는 그 계층에 진입하지 못합니다. 간단히 말하면, 싸움 자체가 성립하지 않는 구조입니다.”
+        현재 정보포식자의 활동이 전 지구적으로 확산되고 있음에도, 포식의 규칙성이나 의도성 여부는 아직 밝혀지지 않았다.
+        다만, 세계 곳곳에서 기억은 남고, 증거는 사라진 채 사람과 장소가 증발하는 사건이 동시에 보고되고 있다.
+      </p>
+    </div>
+    <div class="legacy-text-right">
+      <p style="line-height: 1.4; font-size: 18px;">
+
+        이번 사태는 향후 군사 전략의 근본적 전환을 예고하고 있다. 정보포식자는 무형이며, 공격은 물론 관측 자체가 극도로 제한적이기 때문이다.
+“우리가 현재 지닌 무기체계는 ‘현실에 있는 것’을 겨냥합니다. 그러나 이 존재는 현실을 정의하는 데이터 층을 먹고 들어갑니다.
+지금까지와는 차원이 다른 개념의 위협입니다.”<br>
+─ 前 NATO 전략분석실장, 마야 호지슨 박사<br>
+
+현재 UN 정보안보위원회는 긴급 소집 중이며, ‘비물질적 위협’에 대응 가능한 초개념 방어체계(Project Reframe) 구성을 논의 중인 것으로 알려졌다.
+
+      </p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+</div>
+  </div>
+      <div class="footer">
+      <a href="../legacy.html">&lt; back</a>
+    </div>
+</body>
+</html>

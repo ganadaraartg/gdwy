@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+  <title>Process</title>
+  <style>
+    @font-face {
+      font-family: 'press2p';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../../../media/f8c7d4a04eee4eea-s.p.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'dmo';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../../../media/DungGeunMo.ttf') format('truetype');
+    }
+
+@media screen and (max-width: 1920px) {
+  .box {
+    transform: scale(0.8);
+  }
+}
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+      color: white;
+    }
+
+    div {
+      font-family: 'press2p';
+    }
+
+    .dmo-text {
+  font-family: 'dmo';
+}
+
+    .box {
+      width: 1200px;
+      height: 900px;
+      padding: 20px;
+      border: 2px solid white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://l3u8e64e5j.ufs.sh/f/screenw.webp') center/cover no-repeat;
+      filter: brightness(40%);
+      z-index: 0;
+    }
+
+    .box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+.header-info {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 2px solid white;
+  height: 87px; /* 통일된 높이로 지정 */
+  box-sizing: border-box;
+}
+
+    .user-photo {
+      width: 50px;
+      height: 50px;
+      background: url('../../../media/login/login_door.png') center/cover no-repeat;
+      border: 2px solid white;
+      margin-right: 10px;
+    }
+
+    .user-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 50px;
+    }
+
+    .user-text div {
+      line-height: 1.2;
+    }
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.inner-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+    .title-bar {
+      height: 30px;
+      border-bottom: 1px solid white;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      user-select: none;
+      background-color: white;
+      color: black;
+    }
+
+    .title-buttons {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .title-button {
+      width: 14px;
+      height: 14px;
+      border: 1px solid white;
+      background-color: #222;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .title-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .title-button.exit {
+      text-decoration: none;
+      color: white;
+    }
+
+.content-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.footer {
+  height: 40px;
+  border-top: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 15px;
+}
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      color: black;
+      text-shadow:
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white;
+    }
+
+
+#terminal-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 0; /* 100% 대신 0으로 설정 */
+}
+
+.legacy-title {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 28px;
+  flex-shrink: 0;
+  font-family: 'dmo';
+}
+
+.legacy-grid {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 50px;
+}
+
+/* 스크롤 커스텀 */
+.legacy-content::-webkit-scrollbar {
+  width: 12px;
+}
+.legacy-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.legacy-content::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 0px;
+}
+
+.legacy-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 50px;
+  gap: 30px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.legacy-top-row {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  max-width: 1000px;
+  align-items: center;
+}
+
+.legacy-image-box.small {
+  max-width: 500px;
+  padding: 4px;
+  flex-shrink: 0;
+  border: 2px solid white;
+}
+
+.legacy-side-text {
+  flex-grow: 1;
+  font-family: 'dmo';
+  text-align: left;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.legacy-image-box {
+  border: 2px solid white;
+  padding: 5px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.legacy-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.legacy-text {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  gap: 50px;
+  justify-content: space-between;
+}
+
+.legacy-text-left,
+.legacy-text-right {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: 'dmo';
+}
+
+
+.side-header {
+  font-size: 10px;
+  font-weight: normal;
+  color: white;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.side-title {
+  font-size: 28px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.side-subtitle {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.4;
+  margin-top: 4px;
+  font-family: 'dmo';
+}
+
+.side-footer {
+  font-size: 16px;
+  color: gray;
+  margin-top: auto;
+  line-height: 1.2;
+  font-family: 'dmo';
+}
+
+
+  </style>
+
+</head>
+<body>
+  <div class="box">
+    <div class="header-info">
+      <div class="user-photo"></div>
+      <div class="user-text">
+        <div>Adrift02</div>
+        <div>root: - access</div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="inner-box">
+        <div class="title-bar">
+          <div>Legacy Article</div>
+          <div class="title-buttons">
+            <div class="title-button">−</div>
+            <div class="title-button">□</div>
+            <a href="../legacy.html" class="title-button exit">×</a>
+          </div>
+        </div>
+<div class="content-box" id="terminal-container">
+  <!-- 제목 영역 -->
+  <div class="legacy-title">감각적 이상 반응 보고 급증</div>
+<div class="legacy-content">
+  <div class="legacy-top-row">
+    <div class="legacy-image-box small">
+      <img src="../legacy/Legimg/L7.jpg" alt="Legacy Image" class="legacy-image">
+    </div>
+    <div class="legacy-side-text">
+      <div class="side-header">[WEEKLY EARTH]</div>
+        <h2 style="font-weight: normal;" class="side-title">“전 세계서 감각적 이상 반응 보고 급증”</h2>
+        <div class="side-subtitle">정체불명의 존재감이 느껴지는 현상이 잇따라 보고...</div>
+        <div class="side-footer">
+          By Tamiko R. Stettler, Global Affairs Correspondent<br />
+          발행일: 2067년 3월 11일
+      </div>
+      <p style="line-height: 1.2; font-size: 18px;">
+        전 세계 주요 대도시에서 설명할 수 없는 감각적 이상 반응이 급증하고 있다. ‘누군가가 지켜보는 느낌’, ‘뒤를 따라오는 인기척’,
+        ‘생전 처음 듣는 기묘한 소리’ 등, 직접적인 피해는 없으나 공통적으로 보고되는 이름 붙일 수 없는 기척은 학계와 보건 당국 모두를 긴장시키고 있다.<br><br>정보보안국 및 방위과학기술청은 공식 성명을 통해 “현재로서는 물리적 위협은 감지되지 않았다”며, “불필요한 추측은 자제하되, 이상 반응을 느낄 경우 즉시 보고할 것”을 권고하고 있다.</p>
+    </div>
+  </div>
+
+  <div class="legacy-text">
+    <div class="legacy-text-left">
+      <p style="line-height: 1.4; font-size: 18px;">
+        특히 지난 3주간 실종자가 폭발적으로 증가한 지역(서울, 상트페테르부르크, 뮌헨, 부에노스아이레스, 시드니 등)과 이번 ‘기척 현상’의 집중 발생 지역이 유사한 분포를 보이면서,
+        일각에선 ‘존재하는 비존재’가 가까이 왔다’는 주장도 나오고 있다. 국제신경과학연합(ISN)은 “이 감각들은 전통적인 편집증, 환각 증상과는 전혀 다른 메커니즘을 갖고 있다”며,
+        “공간 내 정보가 비가역적으로 줄어드는 것과 연관이 있을 수 있다”고 밝혔다.
+한편 일부 정보이론 학자들은 “인류는 이제, '인식할 수 없는 존재'의 간섭을 느낄 수 있을 만큼 취약해진 것”이라고 경고하고 있다.</p>
+    </div>
+    <div class="legacy-text-right">
+      <p style="line-height: 1.4; font-size: 18px;">
+        심지어, 자율주행 AI 드론이나 센서형 탐지 시스템까지도 '대상 없음'의 움직임을 포착해내고 있다. AI 시스템은 이 패턴을 “인식 가능한 비정보성 객체의 잔상”이라고 명명했다.
+        세계 곳곳에서 “정보 이상 현상 대응 프로토콜”이 발효되었지만, 아직까지 그 원인을 특정하거나, 본질을 설명한 사례는 없다.
+      </p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+</div>
+  </div>
+      <div class="footer">
+      <a href="../legacy.html">&lt; back</a>
+    </div>
+</body>
+</html>

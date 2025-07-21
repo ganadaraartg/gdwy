@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="./favicon.ico" type="image/x-icon">
+<title>Login</title>
+<style>
+
+@media screen and (max-width: 1920px) {
+  .box {
+    transform: scale(0.8);
+  }
+}
+
+@font-face {
+  font-family: 'press2p';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./media/f8c7d4a04eee4eea-s.p.ttf') format('truetype');
+}
+
+div, button {
+  font-family: 'press2p';
+}
+
+body, html {
+  margin: 0; padding: 0; height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.box {
+  border: 2px solid white;
+  width: 450px;
+  height: 750px;
+  margin-bottom: 140px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.login-header {
+  font-size: 20px;
+  margin-bottom: 50px;
+  white-space: nowrap;
+}
+
+.blinking-cursor {
+  display: inline-block;
+  width: 10px;
+  background-color: white;
+  margin-left: 5px;
+  animation: blink 1s step-start infinite;
+  vertical-align: bottom;
+  height: 1.2em;
+}
+
+@keyframes blink {
+  50% { background-color: transparent; }
+}
+
+a.login-btn {
+  display: inline-block;
+  margin-top: 45px;
+  padding: 20px 50px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+a.login-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.footer {
+  background-color: white;
+  color: black;
+  padding: 15px;
+}
+</style>
+
+</head>
+<body>
+<div class="box">
+  <div class="content">
+    <div class="login-header">
+      Login process...<span class="blinking-cursor"></span>
+    </div>
+    <div style="font-size: 10px; line-height: 1.5; margin-bottom: 20px;">The multiverse interpretation-based protocol of the self-developed system by Dr. Wakaru Mane has been connected. Cease drifting within the passage of time. The flow has consistently been a catastrophe.</div>
+    <a href="./login.html" rel="noopener noreferrer" class="login-btn">Login</a>
+  </div>
+  <div class="footer" style="font-size: 10px; line-height: 1.5; text-align: center;">
+    This protocol enables traversal through eternal spacetime within elements transmitted by special waves.
+  </div>
+</div>
+
+<script>
+  const preloadImages = [
+    './media/report/dd0.webp',
+    './media/report/dd1.webp',
+    './media/report/dd2.webp',
+    './media/report/dd3.webp',
+    './media/report/dd4.webp',
+    './media/report/dd5.webp',
+    './media/report/dd6.webp',
+    './media/report/dd7.webp',
+    './media/report/dd8.webp',
+    './media/report/dd9.webp',
+    './media/report/dd10.webp',
+    './media/report/dd11.webp',
+    './media/report/dd12.webp',
+    './media/report/dd13.webp',
+    './media/report/dd14.webp',
+    './media/report/dd15.webp',
+    './media/report/dd16.webp',
+    './media/report/dd17.webp',
+    './media/report/dd18.webp',
+    './media/report/dd19.webp',
+    './media/report/dd20.webp',
+    './media/report/dd21.webp',
+    './media/report/dd22.webp',
+    './media/report/dd23.webp',
+    './media/report/dd24.webp',
+    './media/report/dd25.webp',
+    './media/report/dd26.webp',
+    './media/report/dd27.webp',
+    './media/report/dd28.webp',
+    './media/report/dd29.webp',
+    './media/report/dd30.webp',
+    './media/report/dd31.webp',
+    './media/report/dd32.webp',
+    './media/report/dd33.webp',
+    './media/report/dd34.webp',
+    './media/report/dd35.webp',
+    './media/report/dd36.webp',
+    './media/report/dd37.webp',
+    './media/report/dd38.webp',
+    './media/report/dd39.webp',
+    './media/report/ddlast.webp',
+    './media/report/backpage.webp',
+  ];
+
+  preloadImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+
+</script>
+
+</body>
+</html>

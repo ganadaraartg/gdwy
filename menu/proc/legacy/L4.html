@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+  <title>Process</title>
+  <style>
+    @font-face {
+      font-family: 'press2p';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../../../media/f8c7d4a04eee4eea-s.p.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'dmo';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../../../media/DungGeunMo.ttf') format('truetype');
+    }
+
+@media screen and (max-width: 1920px) {
+  .box {
+    transform: scale(0.8);
+  }
+}
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+      color: white;
+    }
+
+    div {
+      font-family: 'press2p';
+    }
+
+    .dmo-text {
+  font-family: 'dmo';
+}
+
+    .box {
+      width: 1200px;
+      height: 900px;
+      padding: 20px;
+      border: 2px solid white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://l3u8e64e5j.ufs.sh/f/screenw.webp') center/cover no-repeat;
+      filter: brightness(40%);
+      z-index: 0;
+    }
+
+    .box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+.header-info {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 2px solid white;
+  height: 87px; /* 통일된 높이로 지정 */
+  box-sizing: border-box;
+}
+
+    .user-photo {
+      width: 50px;
+      height: 50px;
+      background: url('../../../media/login/login_door.png') center/cover no-repeat;
+      border: 2px solid white;
+      margin-right: 10px;
+    }
+
+    .user-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 50px;
+    }
+
+    .user-text div {
+      line-height: 1.2;
+    }
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.inner-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+    .title-bar {
+      height: 30px;
+      border-bottom: 1px solid white;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      user-select: none;
+      background-color: white;
+      color: black;
+    }
+
+    .title-buttons {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .title-button {
+      width: 14px;
+      height: 14px;
+      border: 1px solid white;
+      background-color: #222;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .title-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .title-button.exit {
+      text-decoration: none;
+      color: white;
+    }
+
+.content-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.footer {
+  height: 40px;
+  border-top: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 15px;
+}
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      color: black;
+      text-shadow:
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white;
+    }
+
+
+#terminal-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 0; /* 100% 대신 0으로 설정 */
+}
+
+.legacy-title {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 28px;
+  flex-shrink: 0;
+  font-family: 'dmo';
+}
+
+.legacy-grid {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 50px;
+}
+
+/* 스크롤 커스텀 */
+.legacy-content::-webkit-scrollbar {
+  width: 12px;
+}
+.legacy-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.legacy-content::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 0px;
+}
+
+.legacy-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 50px;
+  gap: 30px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.legacy-top-row {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  max-width: 1000px;
+  align-items: center;
+}
+
+.legacy-image-box.small {
+  max-width: 500px;
+  padding: 4px;
+  flex-shrink: 0;
+  border: 2px solid white;
+}
+
+.legacy-side-text {
+  flex-grow: 1;
+  font-family: 'dmo';
+  text-align: left;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.legacy-image-box {
+  border: 2px solid white;
+  padding: 5px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.legacy-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.legacy-text {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  gap: 50px;
+  justify-content: space-between;
+}
+
+.legacy-text-left,
+.legacy-text-right {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: 'dmo';
+}
+
+
+.side-header {
+  font-size: 10px;
+  font-weight: normal;
+  color: white;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.side-title {
+  font-size: 28px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.side-subtitle {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.4;
+  margin-top: 4px;
+  font-family: 'dmo';
+}
+
+.side-footer {
+  font-size: 16px;
+  color: gray;
+  margin-top: auto;
+  line-height: 1.2;
+  font-family: 'dmo';
+}
+
+
+  </style>
+
+</head>
+<body>
+  <div class="box">
+    <div class="header-info">
+      <div class="user-photo"></div>
+      <div class="user-text">
+        <div>Adrift02</div>
+        <div>root: - access</div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="inner-box">
+        <div class="title-bar">
+          <div>Legacy Article</div>
+          <div class="title-buttons">
+            <div class="title-button">−</div>
+            <div class="title-button">□</div>
+            <a href="../legacy.html" class="title-button exit">×</a>
+          </div>
+        </div>
+<div class="content-box" id="terminal-container">
+  <!-- 제목 영역 -->
+  <div class="legacy-title">괴이한 기상현상 포착</div>
+<div class="legacy-content">
+  <div class="legacy-top-row">
+    <div class="legacy-image-box small">
+      <img src="../legacy/Legimg/L4.png" alt="Legacy Image" class="legacy-image">
+    </div>
+    <div class="legacy-side-text">
+      <div class="side-header">[TODAY : A Warning from the Earth]</div>
+        <h2 style="font-weight: normal;" class="side-title">“호주의 이상기후, 현재 4일 째 지속 중...”</h2>
+        <div class="side-subtitle">호주에서 괴이한 기상현상 포착, 검은 구름이 소용돌이 치며 하늘을 덮다.</div>
+        <div class="side-footer">
+          2055년 3월 14일 | 작성: 윤지후<br />
+      </div>
+      <p style="line-height: 1.2; font-size: 18px;">
+        이번 현상에 대해 일부 학자들은 ‘대기 불안정성의 일시적 발현’이라며 과도한 해석을 경계했으나, 몇몇 기후학자는 지구온난화의 극단적 결과일 가능성도 배제하지 않고 있다.</p>
+      <p style="line-height: 1.2; font-size: 18px;">
+        기후과학자 토머스 리(Thomas Lee) 박사는 “지구 평균기온 상승은 단순히 더운 날씨로 끝나는 문제가 아니다. 이례적인 기류의 고착화, 극단적인 해양 증발,
+        전자기파 분산 현상 같은 복합적 결과를 초래할 수 있다”며 “이번 호주 상공의 ‘검은 소용돌이’는 우리가 이제껏 목격하지 못한 새로운 유형의 대기 현상일 가능성이 높다”고 분석했다.
+      </p>
+    </div>
+  </div>
+
+  <div class="legacy-text">
+    <div class="legacy-text-left">
+      <p style="line-height: 1.4; font-size: 18px;">
+        호주 동부 해안 일대에서 정체불명의 기상 현상이 포착되며, 전 세계 기상 과학계가 주목하고 있다.
+        시드니를 포함한 광역 지역의 하늘은 지난 10일부터 갑작스레 형성된 거대한 검은 구름에 완전히 덮였으며,
+        현재까지 4일째 동일한 소용돌이 형태를 유지한 채 움직임 없이 고정돼 있는 것으로 나타났다.기상청은 “전례 없는 규모와 정체성의 구름이며,
+        일반적인 저기압이나 대류권 활동과 일치하지 않는다”고 밝혔다. 또한, 해당 지역의 대기 성분을 분석한 결과,
+        미세한 이온 불균형과 전자기 간섭이 지속적으로 관측되고 있으며, 일부 기상 레이더는 오류를 일으키고 있는 상황이다.</p>
+    </div>
+    <div class="legacy-text-right">
+      <p style="line-height: 1.4; font-size: 18px;">한편, 유럽우주기상감시센터(ESWC)는 “극소규모의 우주적 간섭 신호가 동반되고 있으며,
+        이는 일반적인 태양활동과 무관하다”며, “정보의 왜곡이나 손실을 일으킬 수 있는 유형의 간섭이 증가하고 있다”고 전했다.</br>
+        아직 정확한 원인은 밝혀지지 않았으나, 일부 연구자들은 이 현상이 단순한 기상이변이 아닌 ‘지구 시스템 차원의 이상’일 수 있다는 우려를 표하고 있다.</br>현재 호주 정부는 해당 지역에 기상 비상경보를 발령한 상태이며, 인근 지역 주민들에게는 외출을 최소화를 권고하고 있다.
+      </p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+</div>
+  </div>
+      <div class="footer">
+      <a href="../legacy.html">&lt; back</a>
+    </div>
+</body>
+</html>

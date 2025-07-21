@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  <title>Process</title>
+  <style>
+    @font-face {
+      font-family: 'press2p';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../../media/f8c7d4a04eee4eea-s.p.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'dmo';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../../media/DungGeunMo.ttf') format('truetype');
+    }
+
+@media screen and (max-width: 1920px) {
+  .box {
+    transform: scale(0.8);
+  }
+}
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+      color: white;
+    }
+
+    div {
+      font-family: 'press2p';
+    }
+
+    .dmo-text {
+  font-family: 'dmo';
+}
+
+    .box {
+      width: 1200px;
+      height: 900px;
+      padding: 20px;
+      border: 2px solid white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://l3u8e64e5j.ufs.sh/f/screenw.webp') center/cover no-repeat;
+      filter: brightness(40%);
+      z-index: 0;
+    }
+
+    .box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+.header-info {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 2px solid white;
+  height: 87px; /* 통일된 높이로 지정 */
+  box-sizing: border-box;
+}
+
+    .user-photo {
+      width: 50px;
+      height: 50px;
+      background: url('../../media/login/login_door.png') center/cover no-repeat;
+      border: 2px solid white;
+      margin-right: 10px;
+    }
+
+    .user-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 50px;
+    }
+
+    .user-text div {
+      line-height: 1.2;
+    }
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.inner-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+    .title-bar {
+      height: 30px;
+      border-bottom: 1px solid white;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      user-select: none;
+      background-color: white;
+      color: black;
+    }
+
+    .title-buttons {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .title-button {
+      width: 14px;
+      height: 14px;
+      border: 1px solid white;
+      background-color: #222;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .title-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .title-button.exit {
+      text-decoration: none;
+      color: white;
+    }
+
+    .content-box {
+      flex-grow: 1;
+      display: flex;
+    }
+.footer {
+  height: 40px;
+  border-top: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 15px;
+}
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      color: black;
+      text-shadow:
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white;
+    }
+
+        .display-container {
+      width: 450px; /* 원하는 전광판 폭으로 설정 */
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 10px;
+      padding: 10px;
+      text-align: left;
+      font-size: 12px;
+    }
+
+    .display-text {
+      display: inline-block;
+    }
+
+  </style>
+
+</head>
+<body>
+  <div class="box">
+    <div class="header-info">
+      <div class="user-photo"></div>
+      <div class="user-text">
+        <div>Adrift02</div>
+        <div>root: - access</div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="inner-box">
+        <div class="title-bar">
+          <div>Infomation</div>
+          <div class="title-buttons">
+            <div class="title-button">−</div>
+            <div class="title-button">□</div>
+            <a href="../process.html" class="title-button exit">×</a>
+          </div>
+        </div>
+        <div class="content-box">
+
+
+<div style="width: 100%; padding: 30px; display: flex; flex-direction: column; align-items: center; font-family: monospace; font-size: 4px; white-space: pre;">
+  <div class="ascii-art">
+░███     ░███ ░██       ░██ ░██████        ░█████████                         ░██                                     ░██ 
+░████   ░████ ░██       ░██   ░██          ░██     ░██                        ░██                                     ░██ 
+░██░██ ░██░██ ░██  ░██  ░██   ░██          ░██     ░██ ░██░████  ░███████  ░████████  ░███████   ░███████   ░███████  ░██ 
+░██ ░████ ░██ ░██ ░████ ░██   ░██  ░██████ ░█████████  ░███     ░██    ░██    ░██    ░██    ░██ ░██    ░██ ░██    ░██ ░██ 
+░██  ░██  ░██ ░██░██ ░██░██   ░██          ░██         ░██      ░██    ░██    ░██    ░██    ░██ ░██        ░██    ░██ ░██ 
+░██       ░██ ░████   ░████   ░██          ░██         ░██      ░██    ░██    ░██    ░██    ░██ ░██    ░██ ░██    ░██ ░██ 
+░██       ░██ ░███     ░███ ░██████        ░██         ░██       ░███████      ░████  ░███████   ░███████   ░███████  ░██ 
+  </div>
+
+  <img src="../../media/img/pastcorelogo.png" alt="Image" style="margin-top: 20px; width: 300px;">
+
+  <hr style="width: 100%; margin: 30px 0 20px 0; border: 1px solid white;">
+
+  <div class="info-text" style="white-space: normal; text-align: center; font-size: 20px; font-family: 'dmo'; line-height: 1.1;">
+    Dr.안은채의 주도 하에 만들어진 MWI-Protocol은<br>
+    '관측 분기'현상을 기반으로한 비고전 통신체계입니다. 이를 이용하여<br>
+    양자 관측에 의해 분기된 시공간 간섭, 관측 불가능한<br>
+    과거 기록, 병렬 현실에 접속할 수 있는 다차원 통신<br>
+    인터페이스 PastCore를 구동할 수 있습니다.<br>
+    흐름은 줄곧 재앙이었습니다.
+  </div>
+    <div class="display-container">
+    <span id="display" class="display-text"></span>
+  </div>
+
+  <hr style="width: 100%; margin: 30px 0 20px 0; border: 1px solid white;">
+
+  <div class="info-subtext-wrapper" style="display: flex; justify-content: center; width: 100%;">
+    <div class="info-subtext" style="white-space: normal; text-align: left; font-size: 18px; font-family: 'dmo'; line-height: 1.1;">
+      PastCore System<br>
+      Version 915.2.3 (Build MWI.V) Quantum P-bit<br>
+      Copyright (C) 2002-2026 Dr.Mane Wakaru and ArtGroup Plus.<br>
+      All rights reserved.<br>
+      www.ganadara.site
+
+      <br><br>
+      This content was motivated by Monokuro.world<br>
+      Thanks to Monokuro for the inspiration.
+    </div>
+  </div>
+</div>
+
+
+
+            </div>
+
+
+
+</div>
+  </div>
+      <div class="footer">
+      <a href="../process.html">&lt; back</a>
+    </div>
+
+  <script>
+    const baseText = "   MWI Signal Frame   &   Quantum State Anchoring   &   Temporal Divergence Network   &";
+    const fullText = baseText + baseText.slice(0, 40); // 끝과 시작이 자연스럽게 이어지게
+    const displayWidth = 40;
+    let offset = 0;
+
+    function scrollText() {
+      let visible = "";
+      if (offset + displayWidth <= fullText.length) {
+        visible = fullText.substring(offset, offset + displayWidth);
+      } else {
+        // 자연스러운 래핑 처리
+        const endPart = fullText.substring(offset);
+        const startPart = fullText.substring(0, displayWidth - endPart.length);
+        visible = endPart + startPart;
+      }
+
+      document.getElementById("display").textContent = visible;
+      offset = (offset + 1) % baseText.length; // baseText 길이 기준으로 루프
+    }
+
+    setInterval(scrollText, 150); // 딱딱 끊기는 전광판 느낌
+  </script>
+    
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+  <title>Process</title>
+  <style>
+    @font-face {
+      font-family: 'press2p';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../../../media/f8c7d4a04eee4eea-s.p.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'dmo';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../../../media/DungGeunMo.ttf') format('truetype');
+    }
+
+@media screen and (max-width: 1920px) {
+  .box {
+    transform: scale(0.8);
+  }
+}
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+      color: white;
+    }
+
+    div {
+      font-family: 'press2p';
+    }
+
+    .dmo-text {
+  font-family: 'dmo';
+}
+
+    .box {
+      width: 1200px;
+      height: 900px;
+      padding: 20px;
+      border: 2px solid white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://l3u8e64e5j.ufs.sh/f/screenw.webp') center/cover no-repeat;
+      filter: brightness(40%);
+      z-index: 0;
+    }
+
+    .box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+.header-info {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 2px solid white;
+  height: 87px; /* 통일된 높이로 지정 */
+  box-sizing: border-box;
+}
+
+    .user-photo {
+      width: 50px;
+      height: 50px;
+      background: url('../../../media/login/login_door.png') center/cover no-repeat;
+      border: 2px solid white;
+      margin-right: 10px;
+    }
+
+    .user-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 50px;
+    }
+
+    .user-text div {
+      line-height: 1.2;
+    }
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.inner-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+    .title-bar {
+      height: 30px;
+      border-bottom: 1px solid white;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      user-select: none;
+      background-color: white;
+      color: black;
+    }
+
+    .title-buttons {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .title-button {
+      width: 14px;
+      height: 14px;
+      border: 1px solid white;
+      background-color: #222;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .title-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .title-button.exit {
+      text-decoration: none;
+      color: white;
+    }
+
+.content-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.footer {
+  height: 40px;
+  border-top: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 15px;
+}
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      color: black;
+      text-shadow:
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white;
+    }
+
+
+#terminal-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 0; /* 100% 대신 0으로 설정 */
+}
+
+.legacy-title {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 28px;
+  flex-shrink: 0;
+  font-family: 'dmo';
+}
+
+.legacy-grid {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 50px;
+}
+
+/* 스크롤 커스텀 */
+.legacy-content::-webkit-scrollbar {
+  width: 12px;
+}
+.legacy-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.legacy-content::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 0px;
+}
+
+.legacy-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 50px;
+  gap: 30px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.legacy-top-row {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  max-width: 1000px;
+  align-items: center;
+}
+
+.legacy-image-box.small {
+  max-width: 500px;
+  padding: 4px;
+  flex-shrink: 0;
+  border: 2px solid white;
+}
+
+.legacy-side-text {
+  flex-grow: 1;
+  font-family: 'dmo';
+  text-align: left;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.legacy-image-box {
+  border: 2px solid white;
+  padding: 5px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.legacy-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.legacy-text {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  gap: 50px;
+  justify-content: space-between;
+}
+
+.legacy-text-left,
+.legacy-text-right {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: 'dmo';
+}
+
+
+.side-header {
+  font-size: 10px;
+  font-weight: normal;
+  color: white;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.side-title {
+  font-size: 28px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.side-subtitle {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.4;
+  margin-top: 4px;
+  font-family: 'dmo';
+}
+
+.side-footer {
+  font-size: 16px;
+  color: gray;
+  margin-top: auto;
+  line-height: 1.2;
+  font-family: 'dmo';
+}
+
+
+  </style>
+
+</head>
+<body>
+  <div class="box">
+    <div class="header-info">
+      <div class="user-photo"></div>
+      <div class="user-text">
+        <div>Adrift02</div>
+        <div>root: - access</div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="inner-box">
+        <div class="title-bar">
+          <div>Legacy Article</div>
+          <div class="title-buttons">
+            <div class="title-button">−</div>
+            <div class="title-button">□</div>
+            <a href="../legacy.html" class="title-button exit">×</a>
+          </div>
+        </div>
+<div class="content-box" id="terminal-container">
+  <!-- 제목 영역 -->
+  <div class="legacy-title">인류의 벙커 시스템, 전면 붕괴</div>
+<div class="legacy-content">
+  <div class="legacy-top-row">
+    <div class="legacy-image-box small">
+      <img src="../legacy/Legimg/L10.png" alt="Legacy Image" class="legacy-image">
+    </div>
+    <div class="legacy-side-text">
+      <div class="side-header">[BREAKING NEWS]</div>
+        <h2 style="font-weight: normal;" class="side-title">“인류의 벙커 시스템, 전면 붕괴”</h2>
+        <div class="side-subtitle">문제는 구조가 아니라 개념.</div>
+        <div class="side-footer">
+          국제재난방송통신협회(JEBC) 특파원 마유 노리에<br />
+          2072년 3월 9일
+      </div>
+      <p style="line-height: 1.2; font-size: 18px;">
+        유엔 디지털보안국(UDS) 및 연합정보연구소(UNII)에 따르면, 인류가 마지막 생존 수단으로 구축해온 지하 벙커,
+        도심 피난소, 전자 차폐실 등 대부분의 보호구역이 무력화되었음을 공식 확인했다.
+그 어떤 재료, 어떤 구조체도 “정보를 인식할 수 있다면 그 자체로 노출”된 것이었기 때문이다.
+        </p>
+      <p style="line-height: 1.2; font-size: 18px;">
+        현재, 남은 인류는 물리적 안전을 포기하고, ‘개념적으로 인식되지 않는 상태’를 모색 중이다.
+        일부 연구자는 기억이 삭제된 무의식 상태, 혹은 비개념 영역에서의 생존 가능성을 타진하고 있으며, 이를 위해 일부 뇌 신경 단절 실험이 극비리에 진행 중이라는 보도도 나왔다.
+      </p>
+    </div>
+  </div>
+
+  <div class="legacy-text">
+    <div class="legacy-text-left">
+      <p style="line-height: 1.4; font-size: 18px;">
+        정보포식자의 특성 탓에 위장형 피난소, 디지털 신호 차단 지하요새, 비문명 구조물로 설계된 고대풍 도피처 등 다양한 시도가 있었지만, 대부분 수일 내에 함락되었다.
+심지어 일부 대피시설은 존재했던 기록마저 함께 소거되었고, 구호 대상 인원과 위치 정보를 포함한 전체 로그가 비어 있는 파일 덩어리로만 남았다. 故 호현 선생이 지은 대한민국의 방호시설 또한
+무력화 된 것으로 알려졌다.</p>
+    </div>
+    <div class="legacy-text-right">
+      <p style="line-height: 1.4; font-size: 18px;">유럽 북부의 군사 민간 복합 피난소 ‘아르카-17’의 내부는 현재 완전히 비어 있는 상태로,
+        내부 감시 시스템에는 "No Record Found"만이 반복 출력되고 있다.
+방재복을 입은 사람의 움직임조차 신호로 기록되기 전 사라지는 경우가 발생하고 있으며, 이는 의식이 '정보화'되는 순간부터 감지 대상이 되는 것으로 분석되고 있다.
+
+이제 인류는 ‘보호한다’는 개념 자체가 허구였음을 인정해야 하는 상황이다.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+</div>
+  </div>
+      <div class="footer">
+      <a href="../legacy.html">&lt; back</a>
+    </div>
+</body>
+</html>
