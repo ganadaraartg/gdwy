@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="againprotocol.css" />
+<link rel="icon" href="../favicon2.ico" type="image/x-icon">
+<title>Main Page</title>
+</head>
+<body>
+<div id="blackout"></div>
+  <div class="main-box">
+    <div class="desktop-icons">
+        <div class="icon" data-link="page1.html">
+            <img src="./media/icons/computer.png" alt="Icon 1">
+            <div class="icon-label">My Computer</div>
+        </div>
+        <div class="icon" data-link="page2.html">
+            <img src="./media/icons/page.png" alt="Icon 2">
+            <div class="icon-label">Web</div>
+        </div>
+        <div class="icon" id="music-icon" style="user-select:none;">
+            <img src="./media/icons/music.png" alt="Icon 3">
+            <div class="icon-label">Music Play</div>
+        </div>
+    </div>
+
+        <div class="taskbar">
+            <div class="start-button" onclick="fadeToMenu()">PASTCORE</div>
+            <div class="taskbar-time" id="taskbar-time">00:00</div>
+        </div>
+
+        <audio id="audio-player" src="./media/audio/your-default-song.mp3"></audio>
+
+ <!-- 뮤직창 -->
+    <div class="music-window" id="music-window" style="display:none; top: 100px; left: 100px;">
+      <div class="music-titlebar" id="music-titlebar">
+        <div class="music-title">My Playlist</div>
+        <button class="close-btn" id="music-close-btn" title="Close">&times;</button>
+      </div>
+
+        <div class="music-controls">
+            <button class="btn" id="prev-btn">&#9664;</button>
+            <button class="btn" id="play-pause-btn">&#9658;</button>
+            <div class="song-name" id="song-name">No song</div>
+            <button class="btn" id="volume-down-btn">🔉</button>
+            <button class="btn" id="volume-up-btn">🔊</button>
+            <button class="btn" id="next-btn">&#9654;</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<script src="againprotocol.js"></script>
+</body>
+</html>
