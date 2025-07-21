@@ -229,6 +229,66 @@ function updateClock() {
 }
     setInterval(updateClock, 1000);
     updateClock();
+
+  const preloadImages = [
+    './media/report/dd0.webp',
+    './media/report/dd1.webp',
+    './media/report/dd2.webp',
+    './media/report/dd3.webp',
+    './media/report/dd4.webp',
+    './media/report/dd5.webp',
+    './media/report/dd6.webp',
+    './media/report/dd7.webp',
+    './media/report/dd8.webp',
+    './media/report/dd9.webp',
+    './media/report/dd10.webp',
+    './media/report/dd11.webp',
+    './media/report/dd12.webp',
+    './media/report/dd13.webp',
+    './media/report/dd14.webp',
+    './media/report/dd15.webp',
+    './media/report/dd16.webp',
+    './media/report/dd17.webp',
+    './media/report/dd18.webp',
+    './media/report/dd19.webp',
+    './media/report/dd20.webp',
+    './media/report/dd21.webp',
+    './media/report/dd22.webp',
+    './media/report/dd23.webp',
+    './media/report/dd24.webp',
+    './media/report/dd25.webp',
+    './media/report/dd26.webp',
+    './media/report/dd27.webp',
+    './media/report/dd28.webp',
+    './media/report/dd29.webp',
+    './media/report/dd30.webp',
+    './media/report/dd31.webp',
+    './media/report/dd32.webp',
+    './media/report/dd33.webp',
+    './media/report/dd34.webp',
+    './media/report/dd35.webp',
+    './media/report/dd36.webp',
+    './media/report/dd37.webp',
+    './media/report/dd38.webp',
+    './media/report/dd39.webp',
+    './media/report/ddlast.webp',
+    './media/report/backpage.webp',
+  ];
+
+  preloadImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+
+  window.addEventListener('load', () => {
+  setTimeout(() => {
+    preloadImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, 100);
+});
+
   </script>
 </body>
 </html>
